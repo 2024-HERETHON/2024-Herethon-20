@@ -1,5 +1,9 @@
+from datetime import date
+
 from django import forms
-from .models import SearchRecord, SafetyFilter
+from django.db import models
+
+from .models import SearchRecord, SafetyFilter, Post
 
 class SearchRecordForm(forms.ModelForm):
     safety_filter = forms.ModelMultipleChoiceField(
@@ -25,3 +29,4 @@ class SearchRecordForm(forms.ModelForm):
             'people': '인원수',
             'safety_filter': '안심필터',
         }
+

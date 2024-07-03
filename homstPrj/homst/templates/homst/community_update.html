@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 수정</title>
+</head>
+<body>
+    <div class="form-container">
+        <form method="post" action="{% url 'community_update' post.id %}">
+            {% csrf_token %}
+            <div>
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" value="{{ post.title }}" required>
+            </div>
+            <div>
+                <label for="content">내용</label>
+                <textarea id="content" name="content" rows="10" required>{{ post.content }}</textarea>
+            </div>
+            <button type="submit">수정 완료</button>
+            <a href="{% url 'community_detail' post.id %}">취소</a>
+        </form>
+    </div>
+</body>
+</html>

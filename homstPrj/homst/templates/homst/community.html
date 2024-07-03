@@ -1,11 +1,74 @@
+<!-- homst/templates/homst/community.html -->
+
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    커뮤니티 메인화면
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 메인화면</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .navbar-left {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar-left a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .navbar-right {
+            margin-right: 20px;
+        }
+        .navbar-right button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .navbar-right button:hover {
+            background-color: #0056b3;
+        }
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="#">여행후기</a>
+            <a href="#">숙소추천</a>
+        </div>
+        <div class="navbar-right">
+            <button onclick="location.href='{% url 'community_create' %}'">글쓰기</button>
+            <a href="{% url 'main' %}" style="margin-left: 10px;">메인</a>
+            <a href="{% url 'mypage' %}" style="margin-left: 10px;">마이페이지</a>
+        </div>
+    </div>
+    <div style="padding: 20px;">
+        {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'community_detail' post.id %}">{{ post.title }}</a></h2>
+            <p>{{ post.content }}</p>
+            <p><small>{{ post.created_at }}</small></p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
 </html>
