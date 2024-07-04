@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../asset/css/home.css">
+</head>
+
+<body>
+    <header class="home_header">
+        <img src="../asset/svg/logo.svg" alt="" class="home_logo" id="home_logo">
+        <div class="home_header_right">
+            <a class="home_header_co" id="home_header_co">커뮤니티</a>
+            <img src="../asset/svg/profile.svg" class="home_header_pro" id="home_header_pro" alt="">
+        </div>
+    </header>
+
+    <main class="home_main">
+        <div class="home_head">
+            <div class="home_head_div">
+                <p class="home_head_title">예은님, 어디로 안전한 여행을 떠나볼까요?</p>
+                <div class="home_head_items">
+                    <div class="home_head_item">
+                        <img src="../asset/svg/home_where.svg" alt="" class="home_head_icon">
+                        <input type="text" class="home_head_where" id="home_head_where" placeholder="어디로 떠나볼까요?">
+                    </div>
+                    <div class="home_head_item">
+                        <img src="../asset/svg/home_when.svg" class="home_head_icon" alt="">
+                        <input type="date" class="home_head_when" id="home_head_when1" placeholder="시작날짜를 선택해주세요">
+                        <input type="date" class="home_head_when" id="home_head_when2" placeholder="마지막날짜를 선택해주세요">
+                        <!--<p class="home_head_when">6.30 일 - 7.18 월</p>-->
+                    </div>
+                    <div class="home_head_btn_empty"></div>
+                    <div class="home_head_item">
+                        <img src="../asset/svg/home_who.svg" class="home_head_icon" alt="">
+                        <input type="number" min="0" class="home_head_who" id="home_head_who" placeholder="인원">
+                        <!-- <p class="home_head_who">인원</p> -->
+                    </div>
+                    <div>
+                        <div class="home_head_item" id="home_head_filter">
+                            <img src="../asset/svg/home_filter.svg" class="home_head_icon" alt="">
+                            <p class="home_head_filter">안심필터</p>
+                        </div>
+                        <div id="home_head_filter_drop_div" class="home_head_filter_drop_div">
+                            <div class="home_head_filter_drop_title">
+                                <span>안심필터</span>
+                                <div class="checkbox_div">
+                                    <input type="checkbox" id="home_filter_checkbox">
+                                    <label for="home_filter_checkbox"></label>
+                                    <p class="home_filter_checkbox_txt">전체 선택</p>
+                                </div>
+
+                                <!-- <button class="select_all">전체 선택</button> -->
+                            </div>
+                            <div class="home_filter_options">
+                                <div class="home_filter_option_div">
+                                    <div>
+                                        <img src="../asset/svg/filter_option_camera.svg" alt=""
+                                            class="filter_option_icon">
+                                        <p class="filter_option_txt">몰카안전</p>
+                                    </div>
+                                    <input type="checkbox" id="home_filter_checkbox">
+                                    <label for="home_filter_checkbox"></label>
+                                </div>
+                                <div class="home_filter_option_div">
+                                    <div>
+                                        <img src="../asset/svg/filter_option_toilet.svg" alt=""
+                                            class="filter_option_icon">
+                                        <p class="filter_option_txt">화장실 남녀 분리</p>
+                                    </div>
+                                    <input type="checkbox" id="home_filter_checkbox">
+                                    <label for="home_filter_checkbox"></label>
+                                </div>
+                                <div class="home_filter_option_div">
+                                    <div>
+                                        <img src="../asset/svg/filter_option_girl.svg" alt=""
+                                            class="filter_option_icon">
+                                        <p class="filter_option_txt">여성전용 숙소</p>
+                                    </div>
+                                    <input type="checkbox" id="home_filter_checkbox">
+                                    <label for="home_filter_checkbox"></label>
+                                </div>
+                                <div class="home_filter_option_div">
+                                    <div>
+                                        <img src="../asset/svg/filter_option_CCTV.svg" alt=""
+                                            class="filter_option_icon">
+                                        <p class="filter_option_txt">CCTV 설치 유무</p>
+                                    </div>
+                                    <input type="checkbox" id="home_filter_checkbox">
+                                    <label for="home_filter_checkbox"></label>
+                                </div>
+                            </div>
+                            <div class="home_filter_btn">완료</div>
+                        </div>
+                    </div>
+
+                    <div class="home_head_btn" id="home_head_btn">검색</div>
+                </div>
+            </div>
+        </div>
+        <div class="home_body">
+            <div class="home_list_title_div">
+                <p class="home_list_title">안전도 평가가 좋은 숙소 리스트</p>
+                <img src="../asset/svg/home_next.svg" alt="" id="home_safe_next">
+            </div>
+            <div class="home_lists" id="home_lists"></div>
+            <div class="home_list_title_div">
+                <p class="home_list_title">안전한 여행할 때, 꼭 알고 가야할 것은?</p>
+                <img src="../asset/svg/home_next.svg" alt="" id="home_know_next">
+            </div>
+            <div class="home_know_list">
+                <div class="home_know_img" style="background-image: url('../asset/img/home_know_img1.svg');"></div>
+                <div class="home_know_img" style="background-image: url('../asset/img/home_know_img2.svg');"></div>
+                <div class="home_know_img" style="background-image: url('../asset/img/home_know_img3.svg');"></div>
+            </div>
+            <div class="home_list_title_div">
+                <p class="home_list_title">커뮤니티 인기 숙소</p>
+                <img src="../asset/svg/home_next.svg" alt="" id="home_like_next">
+            </div>
+            <div class="home_lists" id="home_best_lists"></div>
+        </div>
+        <script src="../js/home.js"></script>
+    </main>
+</body>
+
+</html>
