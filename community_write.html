@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티_글작성</title>
+    <link rel="stylesheet" href="./css/community_write.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="./img/homst_logo.svg" alt="여기톤 로고">
+        </div>
+        <div class="page">
+            <a href="community.html">커뮤니티</a>
+            <a href="mypage.html"><img src="./img/mypage_profile.svg" class="mypage"></a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="category">
+            <h3>카테고리</h3>
+            <div class="select">
+                <button>여행후기</button>
+                <button>숙소 추천</button>
+                <button>자유</button>
+            </div>
+        </div>
+        <div class="title">
+            <h3>제목</h3>
+            <input type="text" placeholder="제목을 입력해 주세요">
+        </div>
+        <div class="recommendations">
+            <h3>어느 숙소에 대한 추천인가요?</h3>
+            <!-- <div class="post-rating">
+                <img src="./img/1.jpg" class="rating-img" alt="숙소 이미지">
+                <div class="info-left">
+                    <div class="date">
+                        <p>2024.06.30 - 07.01</p>
+                        <p>1박 이용</p>
+                    </div>
+                    <h3 class="lod-name">속초 호텔 청초</h3>
+                    <p class="locate">속초시, 역 도보 8분</p>
+                    <p class="rate">9.0</p>
+                </div>
+                <div class="info-right">
+                    <input type="radio" name="recommendation" id="rec2">
+                    <label for="rec2" class="custom-radio"></label>
+                    <p class="cctv">cctv 사각지대 최소</p>
+                    <div class="detail">
+                        <p>여성전용 숙소</p>
+                        <p>개별화장실</p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="search-container">
+                <img src="./img/community_search.svg" class="search-button">
+                <input type="text" placeholder="숙소명을 검색해 주세요" class="search-input">
+            </div>
+        </div>
+        <div class="content">
+            <h3>내용</h3>
+            <textarea id="message" name="message" rows="10" placeholder="내용을 입력해 주세요" autocomplete="off"></textarea>
+        </div>
+        <div class="submit">
+            <button>완료</button>
+        </div>
+    </div>
+</body>
+</html>

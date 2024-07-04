@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티_글확인</title>
+    <link rel="stylesheet" href="./css/community_check.css" />
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="./img/homst_logo.svg" alt="여기톤 로고">
+        </div>
+        <div class="page">
+            <a href="community.html">커뮤니티</a>
+            <a href="mypage.html"><img src="./img/mypage_profile.svg" class="mypage"></a>
+        </div>
+    </nav>
+    <div class="container">
+        <p class="category">여행후기</p>
+        <div class="title">
+            <h2> 여자 속초 혼여행 2박 3일!</h2>
+            <div class="btn">
+                <img src="./img/community_views.png" class="views">
+                <p class="write">0</p>
+            </div>
+        </div>
+        <div class="profile">
+            <img src="./img/mypage_profile.svg" class="profile-img">
+            <div class="profile-info">
+                <h3 class="name">yeeun</h3>
+                <p class="date">3일 전</p>
+            </div>
+            <p class="level">숙소 이용객</p>
+        </div>
+        <div class="post-rating">
+            <img src="./img/1.jpg" class="rating-img">
+                <div class="info-left">
+                    <div class="date">
+                        <p>여성 전용 숙소</p>
+                    </div>
+                    <h3 class="lod-name">속초 호텔 청초</h3>
+                    <p class="locate">속초시, 역 도보 8분</p>
+                    <div class="rate-star">
+                        <img src="./img/community_star.svg" alt="별점" class="star">
+                        <p class="rate">9.0</p>
+                    </div>
+                </div>
+                <div class="info-right">
+                    <p class="cctv">cctv 사각지대 최소</p>
+                    <div class="detail">
+                        <p>여성전용 숙소</p>
+                        <p>개별화장실</p>
+                    </div>
+                </div>
+        </div>
+        <div class="content">
+            내용이 들어감
+        </div>
+        <div class="buttons">
+            <div class="posvote-btn">
+                <img src="./img/community_like.svg" alt="공감" class="like">
+                <p>공감</p>
+            </div>
+            <div class="scrap-btn">
+                <img src="./img/community_comment.svg" alt="댓글" class="comment">
+                <p>댓글</p>
+            </div>
+        </div>
+        <section id="comments-section">
+            <!-- 댓글 목록이 이곳에 추가됩니다 -->
+            <article>
+                <div class="parent-write">
+                    <div class="parent-profile">
+                        <img src="./img/mypage_profile.svg" class="profile-img">
+                        <h3 class="name">yeeun</h3>
+                    </div>
+                    <div class="parent-content">
+                        <textarea id="commentText" placeholder="댓글을 입력해 주세요"></textarea>
+                        <button id="submitComment">등록</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+    <script src="./js/community_check.js"></script>
+</body>
+</html>
