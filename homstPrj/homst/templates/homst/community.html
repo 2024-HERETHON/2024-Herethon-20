@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커뮤니티 메인화면</title>
+  </head>
+  <body>
+    <a href="{% url 'main' %}">메인홈</a>
+    <a href="{% url 'mypage' %}">마이페이지</a>
+    <hr />
+    <br />
+    <a href="{% url 'community_create' %}" class="create-button">글쓰기</a>
+    <br>
+    <br>
+    <form method="GET" action="{% url 'community' %}">
+      <label for="category">카테고리 선택:</label>
+      <select name="category" id="category" onchange="this.form.submit()">
+          <option value="">전체</option>
+          <option value="review" {% if request.GET.category == 'review' %}selected{% endif %}>여행 후기</option>
+          <option value="accommodation" {% if request.GET.category == 'accommodation' %}selected{% endif %}>숙소 추천</option>
+          <option value="free" {% if request.GET.category == 'free' %}selected{% endif %}>자유</option>
+      </select>
+  </form>
+
+    {% for post in posts %}
+    <h2>
+      <a href="{% url 'community_detail' post.id %}">{{ post.title }}</a>
+    </h2>
+    <p>{{ post.content }}</p>
+    <p>카테고리 - {{ post.get_category_display }}</p>
+    <p>좋아요 - {{ post.get_likes_count }}</p>
+    <p>{{ post.created_at }}</p>
+    {% endfor %}
+  </body>
+</html>

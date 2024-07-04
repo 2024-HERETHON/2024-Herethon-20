@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ post.title }}</title>
+    <style>
+      .comment {
+        white-space: pre-line;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p>카테고리: {{ post.get_category_display }}</p>
+    <p>작성자: {{ post.author }}</p>
+    {% if post.image %}
+    <img src="{{ post.image.url }}" />
+    {% endif %}
+    <p>작성일: {{ post.created_at }}</p>
+    <br />
+    <a href="{% url 'community_update' post.id %}">수정하기</a>
+    <a href="{% url 'community_delete' post.id %}">삭제하기</a>
+    <br />
+    <br />
+    <p>좋아요: <span id="like-count">{{ post.get_likes_count }}</span></p>
+    <button id="like-button" data-post-id="{{ post.id }}">
+      {% if user in post.likes.all %} 좋아요 취소 {% else %} 좋아요 {% endif %}
+    </button>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+    <h2>댓글</h2>
+    <form method="post" action="{% url 'add_comment' post.id %}">
+      {% csrf_token %}
+      <textarea
+        name="content"
+        rows="3"
+        placeholder="댓글을 입력하세요."
+        required
+      ></textarea>
+      <button type="submit">댓글 등록</button>
+    </form>
+    <br />
+    {% for comment in post.comments.all %}
+    <li class="comment">{{ comment.author }} | {{ comment.content }}</li>
+    {% endfor %}
+    <script>
+      document
+        .getElementById("like-button")
+        .addEventListener("click", function () {
+          var postId = this.getAttribute("data-post-id");
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", '{% url "like_post" post.id %}');
+          xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              var likeCount = document.getElementById("like-count");
+              var button = document.getElementById("like-button");
+              if (button.textContent.trim() === "좋아요") {
+                likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                button.textContent = "좋아요 취소";
+              } else {
+                likeCount.textContent = parseInt(likeCount.textContent) - 1;
+                button.textContent = "좋아요";
+              }
+            }
+          };
+          xhr.send();
+        });
+    </script>
+  </body>
+</html>

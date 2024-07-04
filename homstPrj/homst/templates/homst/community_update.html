@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글 수정</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <form method="post" action="{% url 'community_update' post.id %}">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">수정 완료</button>
+        <a href="{% url 'community_detail' post.id %}">취소</a>
+      </form>
+    </div>
+  </body>
+</html>
