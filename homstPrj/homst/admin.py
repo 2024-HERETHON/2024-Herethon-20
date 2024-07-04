@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import SafetyFilter, Accommodation,  SearchRecord, SortOption
-
+from .models import Post,Comment
 # Register your models here.
 
 @admin.register(SafetyFilter)
@@ -29,3 +29,7 @@ class SortOptionAdmin(admin.ModelAdmin):
     ordering = ('sort_type',)
     list_filter = ('sort_type',)
     search_fields = ('sort_type',)
+
+
+admin.site.register(Post)
+admin.site.register(Comment)
