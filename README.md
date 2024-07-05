@@ -63,8 +63,8 @@
 - **폴더 구조**
 
   ```
-  📂 2024-Herethon-20
-  └─ homstPrj
+  📂 homst
+  └─ 2024-Herethon-20
    ├─ homePrj
    │  ├─ __init__.py
    │  ├─ asgi.py
@@ -93,6 +93,7 @@
          └──mypage.html
          └──record_detail.html
          └──reserve.html
+         └──reserveok.html
          └──search_results.html
    │  ├─ __init__.py
    │  ├─ admin.py
