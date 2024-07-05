@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{%static 'css/community_check.css'%}" />
     <style>
       .comment {
         white-space: pre-line;
@@ -11,43 +13,106 @@
     </style>
   </head>
   <body>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <p>카테고리: {{ post.get_category_display }}</p>
-    <p>작성자: {{ post.author }}</p>
-    {% if post.image %}
-    <img src="{{ post.image.url }}" />
-    {% endif %}
-    <p>작성일: {{ post.created_at }}</p>
-    <br />
+    <nav>
+      <div class="logo">
+          <a href="{% url 'main' %}"><img href="{% url 'main' %}" src="{%static 'img/homst_logo.svg' %}" alt="여기톤 로고"></a>
+      </div>
+      <div class="page">
+          <a href="{% url 'community' %}">커뮤니티</a>
+          <a href="{% url 'mypage' %}"><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"></a>
+      </div>
+    </nav>
+    <div class="container">
+      <br />
     <a href="{% url 'community_update' post.id %}">수정하기</a>
     <a href="{% url 'community_delete' post.id %}">삭제하기</a>
     <br />
-    <br />
-    <p>좋아요: <span id="like-count">{{ post.get_likes_count }}</span></p>
-    <button id="like-button" data-post-id="{{ post.id }}">
-      {% if user in post.likes.all %} 좋아요 취소 {% else %} 좋아요 {% endif %}
-    </button>
-    <br />
-    <br />
-    <hr />
-    <br />
-    <br />
-    <h2>댓글</h2>
-    <form method="post" action="{% url 'add_comment' post.id %}">
-      {% csrf_token %}
-      <textarea
-        name="content"
-        rows="3"
-        placeholder="댓글을 입력하세요."
-        required
-      ></textarea>
-      <button type="submit">댓글 등록</button>
-    </form>
-    <br />
-    {% for comment in post.comments.all %}
-    <li class="comment">{{ comment.author }} | {{ comment.content }}</li>
-    {% endfor %}
+
+      <p class="category">{{ post.get_category_display }}</p>
+      <div class="title">
+          <h2>{{ post.title }}</h2>
+          <div class="btn">
+              <img src="{%static 'img/community_views.png'%}" class="views">
+              <p class="write">0</p>
+          </div>
+      </div>
+      <div class="profile">
+          <img src="{%static 'img/mypage_profile.svg'%}" class="profile-img">
+          <div class="profile-info">
+              <h3 class="name">{{ post.author }}</h3>
+              <p class="date">{{ post.created_at }}</p>
+          </div>
+          <p class="level">숙소 이용객</p>
+      </div>
+      <div class="post-rating">
+          <img src="./img/1.jpg" class="rating-img">
+              <div class="info-left">
+                  <div class="date">
+                      <p>여성 전용 숙소</p>
+                  </div>
+                  <h3 class="lod-name">속초 호텔 청초</h3>
+                  <p class="locate">속초시, 역 도보 8분</p>
+                  <div class="rate-star">
+                      <img src="{%static 'img/community_star.svg'%}" alt="별점" class="star">
+                      <p class="rate">9.0</p>
+                  </div>
+              </div>
+              <div class="info-right">
+                  <p class="cctv">cctv 사각지대 최소</p>
+                  <div class="detail">
+                      <p>여성전용 숙소</p>
+                      <p>개별화장실</p>
+                  </div>
+              </div>
+      </div>
+      <div class="content">
+          내용이 들어감
+      </div>
+      <div class="buttons">
+        <button id="like-button" data-post-id="{{ post.id }}">
+          <img src="{%static 'img/community_like.svg'%}" alt="공감" class="like">
+          {% if user in post.likes.all %} 공감 취소 {% else %} 공감 {% endif %}
+        </button>
+        <p>공감: <span id="like-count">{{ post.get_likes_count }}</span></p>
+          <div class="posvote-btn">
+              <img src="{%static 'img/community_like.svg'%}" alt="공감" class="like">
+              <p id="like-count">공감 {{ post.get_likes_count }}</p>
+          </div>
+          <div class="scrap-btn">      
+              <img src="{%static 'img/community_comment.svg'%}" alt="댓글" class="comment">
+              <p>댓글</p>
+          </div>
+      </div>
+      <section id="comments-section">
+          {% for comment in post.comments.all %}
+          <article>
+            <div class="parent">
+                <div class="parent-profile">
+                    <img src="{%static 'img/mypage_profile.svg'%}" class="profile-img">
+                    <h3 class="name">{{ comment.author }}</h3>
+                </div>
+                <p>{{ comment.content }}</p>
+                <button>답글달기</button>
+            </div>
+          </article>
+          {% endfor %}
+          <article>
+              <form method="post" action="{% url 'add_comment' post.id %}">
+                  {% csrf_token %}
+                  <div class="parent-write">
+                      <div class="parent-profile">
+                          <img src="{% static 'img/mypage_profile.svg' %}" class="profile-img">
+                          <h3 class="name">{{ user.username }}</h3>
+                      </div>
+                      <div class="parent-content">
+                          <textarea name="content" id="commentText" placeholder="댓글을 입력해 주세요" rows="3" required></textarea>
+                          <button type="submit" id="submitComment">등록</button>
+                      </div>
+                  </div>
+              </form>
+          </article>
+      </section>
+  </div>
     <script>
       document
         .getElementById("like-button")
