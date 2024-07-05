@@ -1,0 +1,64 @@
+<!-- community_create.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 작성</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            display: none;
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+<form
+    method="post"
+    action="{% url 'community_create' %}"
+    enctype="multipart/form-data"
+>
+    {% csrf_token %}
+    <div class="autocomplete">
+        <input id="searchInput" type="text" name="search_input" placeholder="Search..." list="wordlist">
+        <datalist id="wordlist">
+            {% for word in words %}
+                <option value="{{ word }}">
+            {% endfor %}
+        </datalist>
+    </div>
+    <br><br>
+    {{ form.as_p }}
+    <button type="submit">등록</button>
+</form>
+</body>
+</html>
