@@ -1,5 +1,5 @@
 from django import forms
-from .models import SearchRecord, SafetyFilter, Post, Comment
+from .models import SearchRecord, SafetyFilter, Post, Comment, Accommodation
 
 class SearchRecordForm(forms.ModelForm):
     safety_filter = forms.ModelMultipleChoiceField(
@@ -34,6 +34,7 @@ class PostForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '제목을 입력하세요'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '내용을 입력하세요'}),
             'category': forms.Select(choices=Post.CATEGORY_CHOICES),
+            'image': forms.FileInput(attrs={'class':'form-control-file'}),
         }
 
 class CommentForm(forms.ModelForm):
@@ -43,3 +44,16 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea(attrs={'rows': 3, 'placeholder': '댓글을 입력하세요.'}),
         }
+
+class AccommodationForm(forms.ModelForm):
+    class Meta:
+        model = Accommodation
+        fields = ['name', 'location', 'review_score', 'price', 'safety_filters', 'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '숙소 이름'}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '숙소 위치'}),
+            'review_score': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '별점'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '가격'}),
+            'safety_filters': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+        }
+

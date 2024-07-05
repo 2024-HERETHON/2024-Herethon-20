@@ -7,21 +7,20 @@ from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':
-        email = request.POST['email']  # 이메일을 입력 폼에서 받아옴
+        email = request.POST['email']
         password = request.POST['password']
         repeat_password = request.POST['repeat']
 
-        if password == repeat_password and len(password) >= 8:
-            # 이메일을 사용하여 새로운 사용자 생성
+        if password != repeat_password:
+            messages.error(request, '비밀번호가 일치하지 않습니다.')
+        if len(password) < 8:
+            messages.error(request, '비밀번호는 8자리 이상이어야 합니다.')
+
+        if not User.objects.filter(username=email).exists() and password == repeat_password and len(password) >= 8: #중복가입시
             new_user = User.objects.create_user(username=email, email=email, password=password)
             messages.success(request, '회원가입 성공')
             return redirect('accounts:login')
-        else:
-            if len(password) < 8:
-                messages.error(request, '비밀번호는 8자리 이상이어야 합니다.')
-            else:
-                messages.error(request, '비밀번호가 일치하지 않습니다.')
-
+    
     return render(request, 'signup.html')
 
 

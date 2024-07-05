@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SafetyFilter, Accommodation,  SearchRecord, SortOption
+from .models import SafetyFilter, Accommodation,  SearchRecord, SortOption, Post, Comment
 from .models import Post,Comment
 # Register your models here.
 
@@ -30,6 +30,13 @@ class SortOptionAdmin(admin.ModelAdmin):
     list_filter = ('sort_type',)
     search_fields = ('sort_type',)
 
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'author', 'created_at') 
+    list_filter = ('category', 'created_at')  
+    search_fields = ('title', 'content')  
 
-admin.site.register(Post)
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'author', 'created_at')  
+    search_fields = ('post__title', 'author__username') 

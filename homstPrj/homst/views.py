@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import SearchRecord, SafetyFilter, Accommodation, Post, Comment, Like
 from .forms import SearchRecordForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 
@@ -99,6 +100,9 @@ def community_detail(request, pk):
 @login_required
 def community_update(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return HttpResponseForbidden("You are not allowed to edit this post.")
+
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -111,6 +115,9 @@ def community_update(request, pk):
 @login_required
 def community_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return HttpResponseForbidden("You are not allowed to delete this post.")
+
     if request.method == 'POST':
         post.delete()
         return redirect('community')
@@ -141,14 +148,6 @@ def like_post(request, pk):
     else:
         post.likes.add(request.user)
     return redirect('community_detail', pk=pk)
-
-@login_required
-def delete_comment(request, comment_id):
-    comment = get_object_or_404(Comment, id=comment_id)
-    if comment.author == request.user:
-        post_id = comment.post.id
-        comment.delete()
-    return redirect('community_detail', pk=post_id)
 
 @login_required
 def mypage(request):

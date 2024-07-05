@@ -17,6 +17,15 @@
       {% endfor %}
     </p>
     <br />
+    {% if accommodation.image %}
+    <img
+      src="{{ accommodation.image.url }}"
+      alt="{{ accommodation.name }}"
+      width="500"
+      height="auto"
+    />
+    {% endif %}
+    <br />
     <br />
     <hr />
     <h3>실제 이용객들의 평가 후기</h3>

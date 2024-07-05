@@ -1,6 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
+import os
+from uuid import uuid4
+from django.utils import timezone
+
+def upload_filepath(instance, filename):
+    today_str = timezone.now().strftime("%Y%m%d")
+    file_basename = os.path.basename(filename)
+    return f'{instance._meta.model_name}/{today_str}/{str(uuid4())}_{file_basename}'
 
 # Create your models here.
 
@@ -36,6 +44,7 @@ class Accommodation(models.Model):
     review_score = models.FloatField(max_length=200)
     price = models.PositiveIntegerField()
     safety_filters = models.ManyToManyField('SafetyFilter')
+    image = models.ImageField(upload_to='accommodations/', blank=True, null=True)
 
     def __str__(self):
         return self.name
