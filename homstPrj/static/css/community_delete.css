@@ -32,7 +32,16 @@ body, h2, h3, p {
   font-family: 'R';
   color: #333;
 }
-
+.login_header_pro {
+  padding: 9px 18px;
+  margin-right: 131px;
+  margin-left: 21px;
+  background-color: #FE6683;
+  color: var(--white);
+  font-size: 14px;
+  font-family: "M";
+  border-radius: 8.18px;
+}
 
 nav {
     width: 100%;

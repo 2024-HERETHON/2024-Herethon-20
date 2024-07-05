@@ -21,8 +21,14 @@
             <p class="search_item" id="search_item_who">인원 {{ people }}</p>
         </div>
         <div class="search_header_right">
-            <a class="search_header_co">커뮤니티</a>
-            <img src="{% static 'svg/profile.svg' %}" class="search_header_pro" alt="">
+            <a href="{% url 'community' %}" class="search_header_co" id="home_header_co"
+        style="text-decoration: none; color: black;">커뮤니티</a>
+      <a href="{% url 'mypage' %}">
+        <img src="{% static 'svg/profile.svg' %}" class="search_header_pro" id="home_header_pro" alt="">
+      </a>
+      <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
+        <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+      </a>
         </div>
     </header>
 
@@ -142,32 +148,35 @@
             
             <div class="search_result_lists" id="search_result_lists">
                 {% for accommodation in accommodations %}
-                <div class="search_result_list">
-                    <div class="search_result_img"></div>
-                    <div class="search_result_imp">
-                        <div>
-                            <p class="search_result_home_type"> </p>
-                            <p class="search_result_name">{{ accommodation.name }}</p>
-                            <p class="search_result_where">{{ accommodation.location }}</p>
-                            <div class="search_result_rec">
-                                <img src="{% static 'svg/home_list_name_rec_icon.svg' %}" class="search_result_rec_icon"
-                                    alt="">
-                                <p class="search_result_rec_num">{{ accommodation.review_score }}</p>
+                <a href="{% url 'record_detail' record_id=accommodation.id %}">
+                    <div class="search_result_list">
+                        <div class="search_result_img"></div>
+                        <div class="search_result_imp">
+                            <div>
+                                <p class="search_result_home_type"> </p>
+                                <p class="search_result_name">{{ accommodation.name }}</p>
+                                <p class="search_result_where">{{ accommodation.location }}</p>
+                                <div class="search_result_rec">
+                                    <img src="{% static 'svg/home_list_name_rec_icon.svg' %}" class="search_result_rec_icon"
+                                        alt="">
+                                    <p class="search_result_rec_num">{{ accommodation.review_score }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="search_result_under">
-                            <div class="search_result_types">
-                                {% for filter in accommodation.safety_filters.all %}
-                                <p class="search_result_type">{{ filter.name }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="search_result_price">
-                                <p class="search_result_price_txt">전 객실 평균</p>
-                                <p class="search_result_price_num">{{ accommodation.price }}원</p>
+                            <div class="search_result_under">
+                                <div class="search_result_types">
+                                    {% for filter in accommodation.safety_filters.all %}
+                                    <p class="search_result_type">{{ filter.name }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="search_result_price">
+                                    <p class="search_result_price_txt">전 객실 평균</p>
+                                    <p class="search_result_price_num">{{ accommodation.price }}원</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
+                
                 {% endfor %}
 
                 {% if not accommodations %}

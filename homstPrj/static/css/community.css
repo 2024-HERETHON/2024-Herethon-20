@@ -1,4 +1,11 @@
-
+:root {
+  --white : #fff;
+  --black : #000;
+  --join_input_back: #EDEDED;
+  --join_input_txt: #9C9C9C;
+  --join_btn_back: #FE6683;
+  --join_pw_check : #FF6060  
+}
 * {
   margin: 0;
   padding: 0;
@@ -83,6 +90,17 @@ nav {
   align-items: center;
   width: 86%;
   margin-top: 60px;
+}
+
+.login_header_pro {
+  padding: 9px 18px;
+  margin-right: 131px;
+  margin-left: 21px;
+  background-color: #FE6683;
+  color: var(--white);
+  font-size: 14px;
+  font-family: "M";
+  border-radius: 8.18px;
 }
 
 h2 {

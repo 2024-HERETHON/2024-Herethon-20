@@ -53,9 +53,9 @@
 }
 
 .search_logo {
-    width: 115px;
-    height: 34px;
     margin-left: 56px;
+    width: 107px;
+    height: 21px;
 }
 
 .search_header_right {
@@ -72,7 +72,6 @@
 .search_header_pro {
     width: 39px;
     height: 39px;
-    margin-right: 131px;
     margin-left: 21px;
 }
 
@@ -314,11 +313,13 @@ input[id="search_type_total"]:checked+label::after {
     margin-bottom: 10px;
     font-size: 18px;
     font-family: 'B';
+    color: #000;
 }
 
 .search_result_where {
     font-size: 14px;
     font-family: 'M';
+    color: #000;
 }
 
 .search_result_rec {
@@ -340,6 +341,7 @@ input[id="search_type_total"]:checked+label::after {
 .search_result_rec_num {
     font-size: 14px;
     font-family: 'M';
+    color: #000;
 }
 
 .search_result_under {
@@ -473,7 +475,16 @@ input:first-child {
     padding-left: 7px;
     background-color: #EDEDED;
 }
-.drop_down option{
-    
-    
+.login_header_pro{
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: #FE6683;
+    color: var(--white);
+    font-size: 14px;
+    font-family: 'M';
+    border-radius: 8.18px;
+}
+a{
+    text-decoration: none;
 }

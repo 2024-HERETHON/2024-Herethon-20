@@ -98,6 +98,16 @@ nav {
     margin-right: 130px;
 }
 
+.login_header_pro {
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: #FE6683;
+    color: var(--white);
+    font-size: 14px;
+    font-family: "M";
+    border-radius: 8.18px;
+  }
 
 /*제목*/
 .category {

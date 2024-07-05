@@ -37,6 +37,9 @@
         <div class="page">
             <a href="{% url 'community' %}">커뮤니티</a>
             <a href="{% url 'mypage' %}"><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"></a>
+            <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
+                <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+            </a>
         </div>
     </nav>
     <div class="title">

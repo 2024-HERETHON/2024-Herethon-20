@@ -42,9 +42,9 @@
 }
 
 .login_logo {
-    width: 115px;
-    height: 34px;
     margin-left: 56px;
+    width: 107px;
+    height: 21px;
 }
 .login_header_right{
     display: flex;
