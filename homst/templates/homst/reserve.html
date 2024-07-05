@@ -1,14 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reservation</title>
+    <link rel="stylesheet" href="{%static 'css/reserve.css'%}" />
   </head>
   <body>
-    <h1>{{ accommodation.name }} 예약하기</h1>
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit">예약 확인</button>
-      <a href="{% url 'record_detail' accommodation.id %}">취소</a>
-    </form>
+    <nav>
+      <div class="logo">
+        <a href="{% url 'main' %}"
+          ><img
+            href="{% url 'main' %}"
+            src="{% static 'img/homst_logo.svg' %}"
+            alt="여기톤 로고"
+        /></a>
+      </div>
+      <div class="page">
+        <a href="{% url 'community' %}">커뮤니티</a>
+        <a href="{% url 'mypage' %}"
+          ><img src="{% static 'img/mypage_profile.svg' %}" class="mypage"
+        /></a>
+        <a href="{% url 'accounts:login' %}" style="text-decoration: none">
+          <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+        </a>
+      </div>
+    </nav>
+    <div class="delete">
+      <h2>{{ accommodation.name }} 예약하기</h2>
+      <p>예약 확인 버튼을 누르는 순간 즉시 예약이 시작됩니다.</p>
+      <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'record_detail' accommodation.id %}">취소</a>
+        <button type="submit">예약 확인</button>
+      </form>
+    </div>
   </body>
 </html>

@@ -14,8 +14,8 @@ class SearchRecordForm(forms.ModelForm):
         fields = ['destination', 'travel_date', 'travel_date2', 'people', 'safety_filter']
         widgets = {
             'destination': forms.TextInput(attrs={'placeholder': '여행지를 입력하세요'}),
-            'travel_date': forms.DateInput(attrs={'type': 'date', 'placeholder': '여행 시작일'}),
-            'travel_date2': forms.DateInput(attrs={'type': 'date', 'placeholder': '여행 종료일'}),
+            'travel_date': forms.DateInput(attrs={'class':'home_head_when','type': 'date', 'placeholder': '여행 시작일'}),
+            'travel_date2': forms.DateInput(attrs={'class':'home_head_when','type': 'date', 'placeholder': '여행 종료일'}),
             'people': forms.NumberInput(attrs={'min': 1, 'placeholder': '인원 수'}),
         }
         labels = {
