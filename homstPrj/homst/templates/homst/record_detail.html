@@ -1,38 +1,210 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <a href="{% url 'community' %}">커뮤니티</a>
-    <a href="{% url 'mypage' %}">마이페이지</a>
-    <h2>{{ accommodation.name }}</h2>
-    <p>{{ accommodation.location }}</p>
-    <p>{{ accommodation.review_score }}</p>
-    <p>{{ accommodation.price }}원</p>
-    <p>
-      {% for filter in accommodation.safety_filters.all %} {{ filter.name }} |
-      {% endfor %}
-    </p>
-    <br />
-    {% if accommodation.image %}
-    <img
-      src="{{ accommodation.image.url }}"
-      alt="{{ accommodation.name }}"
-      width="500"
-      height="auto"
-    />
-    {% endif %}
-    <br />
-    <br />
-    <hr />
-    <h3>실제 이용객들의 평가 후기</h3>
-    후기글
-    <br />
-    <br />
-    <h3>숙소 안전 정보</h3>
-    정보
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/home_detail.css'  %}">
+</head>
+
+<body>
+  <header class="home_detail_header">
+    <img src="{% static 'svg/logo.svg' %}" alt="" class="home_detail_logo" id="home_logo">
+    <div class="home_detail_header_right">
+      <a href="{% url 'community' %}" class="home_detail_header_co" id="home_header_co"
+        style="text-decoration: none; color: black;">커뮤니티</a>
+      <a href="{% url 'mypage' %}">
+        <img src="{% static 'svg/profile.svg' %}" class="home_detail_header_pro" id="home_header_pro" alt="">
+      </a>
+      <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
+        <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+      </a>
+    </div>
+  </header>
+
+  <main class="home_detail_main">
+    <div class="home_detail_div">
+      <div class="home_detail_img_div">
+        <div class="img_left"><img src="{% static 'img/home_detail_img1.svg'  %}" alt=""></div>
+        <div class="img_right">
+          <img class="img_detail" src="{% static 'img/home_detail_img2.svg'  %}" alt="">
+          <img class="img_detail" src="{% static 'img/home_detail_img3.svg'  %}" alt="">
+          <img class="img_detail" src="{% static 'img/home_detail_img4.svg'  %}" alt="">
+          <img class="img_detail" src="{% static 'img/home_detail_img5.svg'  %}" alt="">
+        </div>
+      </div>
+      <div class="home_detail_info_div">
+        <div class="home_detail_infos">
+          <p class="home_detail_girl">여성 전용 숙소</p>
+          <div class="home_detail_name_rec">
+            <h4 class="home_detail_name">{{ accommodation.name }}</h4>
+            <div class="home_detail_rec">
+              <img src="{% static 'svg/home_detail_rec_icon.svg'  %}home_detail_rec_icon.svg" class="home_detail_rec_icon">
+              <p class="home_detail_rec_num">{{ accommodation.review_score }}</p>
+            </div>
+          </div>
+          <p class="home_detail_where">{{ accommodation.location }}</p>
+
+        </div>
+        <div class="home_detail_types">
+          {% for filter in accommodation.safety_filters.all %} 
+          <p class="home_detail_type">{{ filter.name }}</p>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="home_detail_post_title_div">
+        <p class="home_detail_post_title">실제 이용객들의 안전 평가 후기</p>
+        <p class="home_detail_post_num">324개</p>
+      </div>
+      <div class="home_detail_post_div">
+        <div class="home_detail_post">
+          <div class="home_detail_post_info">
+            <img src="{% static 'svg/home_detail_profile.svg'  %}" class="home_detail_profile" alt="">
+            <p class="home_detail_post_name">yeeun</p>
+            <img src="{% static 'svg/home_detail_star.svg'  %}" class="home_detail_star" alt="">
+            <p class="home_detail_post_when">2일 전 이용</p>
+          </div>
+          <p class="home_detail_post_txt">여자 혼자 2박 이용했습니다~ CCTV 사각지대 최소라고 해서 예약했는데, 실제로 일일이 확인 할 순 없어도 곳곳에서 확인 가능하더라구요!
+            그리고 역이랑도 멀지 않아서 뚜벅이들 여행하기 좋아요! 그리고 숙소 몰카 점검을 인증한 업체 통해서 하고 있다길래 넘 믿음이 갔어요 이런 숙소 좋아요~</p>
+        </div>
+        <div class="home_detail_post">
+          <div class="home_detail_post_info">
+            <img src="{% static 'svg/home_detail_profile.svg'  %}" class="home_detail_profile" alt="">
+            <p class="home_detail_post_name">다연씨</p>
+            <img src="{% static 'svg/home_detail_star.svg'  %}" class="home_detail_star" alt="">
+            <p class="home_detail_post_when">2일 전 이용</p>
+          </div>
+          <p class="home_detail_post_txt">여자 혼자 2박 이용했습니다~ CCTV 사각지대 최소라고 해서 예약했는데, 실제로 일일이 확인 할 순 없어도 곳곳에서 확인 가능하더라구요!
+            그리고 역이랑도 멀지 않아서 뚜벅이들 여행하기 좋아요! 그리고 숙소 몰카 점검을 인증한 업체 통해서 하고 있다길래 넘 믿음이 갔어요 이런 숙소 좋아요~</p>
+        </div>
+      </div>
+      <hr>
+      <p class="home_detail_safe_title">숙소 안전 정보</p>
+      <div class="home_detail_safe_div">
+        <div class="home_detail_safe">
+          <div class="home_detail_safe_type_div">
+            <img src="{% static 'svg/home_detail_safe_type_icon.svg'  %}"
+              class="home_detail_safe_type_icon" alt="">
+            <p class="home_detail_safe_type_name">몰카안전</p>
+            <img src="{% static 'svg/home_detail_safe_stamp.svg'  %}" class="home_detail_safe_stamp"
+              alt="">
+          </div>
+          <p class="home_detail_safe_txt">몰래카메라 점검 업체 이용 숙소</p>
+        </div>
+        <div class="home_detail_safe">
+          <div class="home_detail_safe_type_div">
+            <img src="{% static 'svg/home_detail_safe_type_icon.svg'  %}"
+              class="home_detail_safe_type_icon" alt="">
+            <p class="home_detail_safe_type_name">몰카안전</p>
+            <img src="{% static 'svg/home_detail_safe_stamp.svg'  %}" class="home_detail_safe_stamp"
+              alt="">
+          </div>
+          <p class="home_detail_safe_txt">몰래카메라 점검 업체 이용 숙소</p>
+        </div>
+        <div class="home_detail_safe">
+          <div class="home_detail_safe_type_div">
+            <img src="{% static 'svg/home_detail_safe_type_icon.svg'  %}"
+              class="home_detail_safe_type_icon" alt="">
+            <p class="home_detail_safe_type_name">몰카안전</p>
+            <img src="{% static 'svg/home_detail_safe_stamp.svg'  %}" class="home_detail_safe_stamp"
+              alt="">
+          </div>
+          <p class="home_detail_safe_txt">몰래카메라 점검 업체 이용 숙소</p>
+        </div>
+      </div>
+      <hr>
+      <p class="home_detail_safe_title">객실 선택</p>
+      <div class="home_detail_room_div">
+        <img src="{% static 'img/home_detail_room_img2.svg'  %}" alt="" class="home_detail_room_img">
+        <div class="home_detail_room">
+          <p class="home_detail_room_name">슈페리어 트윈</p>
+          <div class="home_detail_room_info_div">
+            <img src="{% static 'svg/home_detail_room_icon.svg'  %}" alt=""
+              class="home_detail_room_icon">
+            <div class="home_detail_room_time">
+              <p>입실 15:00</p>
+              <p>퇴실 11:00</p>
+            </div>
+            <div class="home_detail_room_book">
+              <p>94,000원</p>
+              <div>객실 예약</div>
+            </div>
+          </div>
+          <div class="home_detail_room_type_div">
+            <div class="home_detail_room_type_title">
+              <p class="home_detail_room_type_title_txt">객실 정보</p>
+              <p class="home_detail_room_type_title_txt">추가 정보</p>
+            </div>
+            <div class="home_detail_room_type_txt_div">
+              <p class="home_detail_room_type_txt">기준 2인 최대 3인</p>
+              <p class="home_detail_room_type_txt">침구 추가 가능 (최대 1인)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home_detail_room_div">
+        <img src="{% static 'img/home_detail_room_img1.svg'  %}home_detail_room_img1.svg" alt="" class="home_detail_room_img">
+        <div class="home_detail_room">
+          <p class="home_detail_room_name">슈페리어 트윈2</p>
+          <div class="home_detail_room_info_div">
+            <img src="{% static 'svg/home_detail_room_icon.svg'  %}home_detail_room_icon.svg" alt=""
+              class="home_detail_room_icon">
+            <div class="home_detail_room_time">
+              <p>입실 15:00</p>
+              <p>퇴실 11:00</p>
+            </div>
+            <div class="home_detail_room_book">
+              <p>94,000원</p>
+              <div>객실 예약</div>
+            </div>
+          </div>
+          <div class="home_detail_room_type_div">
+            <div class="home_detail_room_type_title">
+              <p class="home_detail_room_type_title_txt">객실 정보</p>
+              <p class="home_detail_room_type_title_txt">추가 정보</p>
+            </div>
+            <div class="home_detail_room_type_txt_div">
+              <p class="home_detail_room_type_txt">기준 2인 최대 3인</p>
+              <p class="home_detail_room_type_txt">침구 추가 가능 (최대 1인)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home_detail_room_div">
+        <img src="{% static 'img/home_detail_room_img3.svg'  %}" alt="" class="home_detail_room_img">
+        <div class="home_detail_room">
+          <p class="home_detail_room_name">슈페리어 트윈3</p>
+          <div class="home_detail_room_info_div">
+            <img src="{% static 'svg/home_detail_room_icon.svg'  %}" alt=""
+              class="home_detail_room_icon">
+            <div class="home_detail_room_time">
+              <p>입실 15:00</p>
+              <p>퇴실 11:00</p>
+            </div>
+            <div class="home_detail_room_book">
+              <p>94,000원</p>
+              <div>객실 예약</div>
+            </div>
+          </div>
+          <div class="home_detail_room_type_div">
+            <div class="home_detail_room_type_title">
+              <p class="home_detail_room_type_title_txt">객실 정보</p>
+              <p class="home_detail_room_type_title_txt">추가 정보</p>
+            </div>
+            <div class="home_detail_room_type_txt_div">
+              <p class="home_detail_room_type_txt">기준 2인 최대 3인</p>
+              <p class="home_detail_room_type_txt">침구 추가 가능 (최대 1인)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+</body>
+
 </html>

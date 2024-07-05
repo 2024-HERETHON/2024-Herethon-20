@@ -1,12 +1,35 @@
-/* 기본 스타일 리셋 및 폰트 정의 */
-body,
-h2,
-h3,
-p,
-a {
+
+* {
   margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif;
+  font-family: 'R';
+}
+@font-face {
+  font-family: 'B';
+  src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'S';
+  src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'M';
+  src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'R';
+  src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'L';
+  src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+/* 기본 스타일 리셋 및 폰트 정의 */
+body, h2, h3, p, a {
+  margin: 0;
+  padding: 0;
+  font-family: 'R';
   color: #333;
   text-decoration: none;
 }
@@ -196,8 +219,8 @@ article {
 /* 별점정보 */
 .post-rating {
   display: flex;
-  background-color: #f4f4f4;
-  border: 1px solid #d9d9d9;
+  background: linear-gradient(to left, #FFE6E6, #FFF6F5); /* 왼쪽에서 오른쪽으로 그라데이션 */
+  border: 1px solid #F1C9C9;
   padding: 10px;
   width: 253px;
   border-radius: 9px;
