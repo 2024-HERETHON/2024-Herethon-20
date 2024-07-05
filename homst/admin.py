@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import SafetyFilter, Accommodation,  SearchRecord, SortOption, Post, Comment
+from .models import SafetyFilter, Accommodation,  SearchRecord, SortOption, Post, Comment, Reservation
 
 # Register your models here.
+
+admin.site.register(Reservation)
+
 
 @admin.register(SafetyFilter)
 class SafetyFilterAdmin(admin.ModelAdmin):

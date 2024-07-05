@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>마이페이지</title>
   </head>
   <body>
     <a href="{% url 'community' %}">커뮤니티</a>
@@ -40,6 +40,20 @@
     {% else %}
     <p>작성한 글이 없습니다.</p>
     {% endif %}
-    <br />
+
+    <h3>나의 숙소 예약 내역</h3>
+    {% if reservations %}
+    <ul>
+      {% for reservation in reservations %}
+      <li>
+        <a href="{% url 'record_detail' reservation.accommodation.id %}">
+          {{ reservation.accommodation.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>예약 내역이 없습니다.</p>
+    {% endif %}
   </body>
 </html>

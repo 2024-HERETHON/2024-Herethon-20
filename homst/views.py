@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import SearchRecord, SafetyFilter, Accommodation, Post, Comment, Like
+from .models import SearchRecord, SafetyFilter, Accommodation, Post, Comment, Like, Reservation
 from .forms import SearchRecordForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.urls import reverse
 
 # Create your views here.
 
@@ -151,13 +152,24 @@ def like_post(request, pk):
 
 @login_required
 def mypage(request):
-    user = request.user
-    liked_posts = user.liked_posts.all()
-    authored_posts = user.posts.all()
-
+    reservations = Reservation.objects.filter(user=request.user)
     context = {
-        'user': user,
-        'liked_posts': liked_posts,
-        'authored_posts': authored_posts,
+        'user': request.user,
+        'liked_posts': request.user.liked_posts.all(),
+        'authored_posts': request.user.authored_posts.all(),
+        'reservations': reservations,
     }
     return render(request, 'homst/mypage.html', context)
+
+@login_required
+def reserve(request, pk):
+    accommodation = get_object_or_404(Accommodation, pk=pk)
+    if request.method == 'POST':
+        Reservation.objects.create(user=request.user, accommodation=accommodation)
+        return redirect(reverse('reserveok', kwargs={'pk': accommodation.pk}))
+    return render(request, 'homst/reserve.html', {'accommodation': accommodation})
+
+@login_required
+def reserveok(request, pk):
+    accommodation = get_object_or_404(Accommodation, pk=pk)
+    return render(request, 'homst/reserveok.html', {'accommodation_id': accommodation.id})
