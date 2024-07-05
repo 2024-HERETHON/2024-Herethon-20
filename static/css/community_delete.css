@@ -1,0 +1,107 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'R';
+}
+@font-face {
+  font-family: 'B';
+  src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'S';
+  src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'M';
+  src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'R';
+  src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'L';
+  src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+/* 기본 스타일 리셋 및 폰트 정의 */
+body, h2, h3, p {
+  margin: 0;
+  padding: 0;
+  font-family: 'R';
+  color: #333;
+}
+.login_header_pro {
+  padding: 9px 18px;
+  margin-right: 131px;
+  margin-left: 21px;
+  background-color: #FE6683;
+  color: var(--white);
+  font-size: 14px;
+  font-family: "M";
+  border-radius: 8.18px;
+}
+
+nav {
+    width: 100%;
+    background: #ffffff;
+    height: 76px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    margin-left: 56px;
+    width: 107px;
+    height: 21px;
+  }
+  
+  .page a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-size: 16px;
+  }
+  
+  .mypage {
+    width: 40px;
+    height: 40px;
+    margin-right: 130px;
+  }
+
+.delete {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+p {
+    font-size: 24px;
+}
+
+button {
+    padding: 17px 40px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
