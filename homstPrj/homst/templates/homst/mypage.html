@@ -1,45 +1,64 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="{%static 'css/mypage.css'%}" />
   </head>
   <body>
-    <a href="{% url 'community' %}">커뮤니티</a>
-    <hr />
+    <nav>
+      <div class="logo">
+          <a href="{% url 'main' %}"><img href="{% url 'main' %}" src="{%static 'img/homst_logo.svg' %}" alt="여기톤 로고"></a>
+      </div>
+      <div class="page">
+        <a href="{% url 'community' %}">커뮤니티</a>
+          <a href="{% url 'mypage' %}"><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"></a>
+      </div>
+  </nav>
+  <div class="title">
     <h2>마이페이지</h2>
-
-    <h3>내 정보</h3>
-    <p>환영합니다, {{ user.username }}님!</p>
-    <p>이메일: {{ user.email }}</p>
-    <p>가입일: {{ user.date_joined|date:"Y년 m월 d일" }}</p>
-
-    <h3>내가 좋아요 한 글</h3>
-    {% if liked_posts %}
-    <ul>
-      {% for post in liked_posts %}
-      <li>
-        <a href="{% url 'community_detail' post.id %}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>좋아요 한 글이 없습니다.</p>
-    {% endif %}
-
-    <h3>내가 작성한 글</h3>
-    {% if authored_posts %}
-    <ul>
-      {% for post in authored_posts %}
-      <li>
-        <a href="{% url 'community_detail' post.id %}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>작성한 글이 없습니다.</p>
-    {% endif %}
-    <br />
+</div>
+<section>
+    <div class="profile">
+        <img src="{%static 'img/mypage_profile.svg'%}">
+        <p>yeeun</p>
+    </div>
+    <article>
+        <div class="profile-info">
+          <h3>내 정보 관리</h3>
+            <div class="content">
+                <p>이메일: {{ user.email }}</p>
+            </div>
+            <div class="content">
+              <p>가입일: {{ user.date_joined|date:"Y년 m월 d일" }}</p>
+          </div>
+        </div>
+        <div class="profile-info">
+            <h3>커뮤니티</h3>
+            <div class="content">
+                <p>좋아요 목록</p>
+            </div>
+              {% if liked_posts %}
+                {% for post in liked_posts %}
+                <a href="{% url 'community_detail' post.id %}"><div class="child"><p>{{ post.title }}</p></div></a>
+                {% endfor %}
+                {% else %}
+                <div class="child"><p>좋아요 한 글이 없습니다.</p></div>
+                {% endif %}
+            <div class="content">
+                <p>작성한 글</p>
+            </div>
+              {% if authored_posts %}
+                {% for post in authored_posts %}
+                <a href="{% url 'community_detail' post.id %}"><div class="child"><p>{{ post.title }}</p></div></a>
+                {% endfor %}
+                {% else %}
+                <div class="child"><p>작성한 글이 없습니다.</p></div>
+                {% endif %}
+        </div>
+    </article>
+</section>
   </body>
 </html>

@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>커뮤니티 메인화면</title>
+    <link rel="stylesheet" href="{%static 'css/community.css'%}" />
     <style>
       .post-thumbnail {
         width: 200px;
@@ -28,36 +30,68 @@
     </style>
   </head>
   <body>
-    <a href="{% url 'main' %}">메인홈</a>
-    <a href="{% url 'mypage' %}">마이페이지</a>
-    <hr />
-    <br />
-    <a href="{% url 'community_create' %}" class="create-button">글쓰기</a>
-    <br>
-    <br>
-    <form method="GET" action="{% url 'community' %}">
-      <label for="category">카테고리 선택:</label>
-      <select name="category" id="category" onchange="this.form.submit()">
-          <option value="">전체</option>
-          <option value="review" {% if request.GET.category == 'review' %}selected{% endif %}>여행 후기</option>
-          <option value="accommodation" {% if request.GET.category == 'accommodation' %}selected{% endif %}>숙소 추천</option>
-          <option value="free" {% if request.GET.category == 'free' %}selected{% endif %}>자유</option>
-      </select>
-  </form>
-
-    {% for post in posts %}
-    <div class="post-item">
-      <h2>
-        <a href="{% url 'community_detail' post.id %}">{{ post.title }}</a>
-      </h2>
-      {% if post.image %}
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-thumbnail">  <!-- 미리보기 사진 -->
-      {% endif %}
-      <p>{{ post.content|truncatewords:20 }}</p>
-      <p>카테고리 - {{ post.get_category_display }}</p>
-      <p>좋아요 - {{ post.get_likes_count }}</p>
-      <p>{{ post.created_at }}</p>
+    <nav>
+        <div class="logo">
+            <a href="{% url 'main' %}"><img href="{% url 'main' %}" src="{%static 'img/homst_logo.svg' %}" alt="여기톤 로고"></a>
+        </div>
+        <div class="page">
+            <a href="community.html">커뮤니티</a>
+            <a href="{% url 'mypage' %}"><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"></a>
+        </div>
+    </nav>
+    <div class="title">
+        <div class="category-select">
+        <form method="GET" action="{% url 'community' %}">
+            <button type="submit" name="category" value="review" class="{% if request.GET.category == 'review' %}active{% endif %}">여행후기</button>
+            <button type="submit" name="category" value="accommodation" class="{% if request.GET.category == 'accommodation' %}active{% endif %}">숙소추천</button>
+            <button type="submit" name="category" value="free" class="{% if request.GET.category == 'free' %}active{% endif %}">자유</button>
+        </form>
+        </div>
+        <a href="{% url 'community_create' %}" class="button">글쓰기</a>
     </div>
-    {% endfor %}
-  </body>
+    {% for post in posts %}
+    <a class="section-link" href="{% url 'community_detail' post.id %}">
+        <section>
+        <article>
+            <div class="post">
+                <div class="profile">
+                    <img src="{%static 'img/mypage_profile.svg'%}" class="profile-img">
+                    <div class="profile-info">
+                        <h3 class="name">{{ post.author }}</h3>
+                        <p class="date">{{ post.created_at }}</p>
+                    </div>
+                    <p class="level">숙소 이용객</p>
+                </div>
+                <div class="post-title">{{ post.title }}</div>
+                <div class="post-rating">
+                    <img src="{%static 'img/hotel.png'%}" class="rating-img">
+                    <div class="rating-info">
+                        <h3 class="lod-name">속초 호텔 청초</h3>
+                        <p class="locate">속초시, 역 도보 8분</p>
+                    </div>
+                    <div class="rate-star">
+                        <img src="{%static 'img/community_star.svg'%}" alt="별점" class="star">
+                        <p class="rate">9.0</p>
+                    </div>
+                </div>
+                <p class="post-contents">{{ post.content }}</p>
+                <div class="buttons">
+                    <div class="posvote-btn">
+                        <img src="{%static 'img/community_like.svg'%}" alt="공감" class="like">
+                        <p>공감{{ post.get_likes_count }}</p>
+                    </div>
+                    <div class="scrap-btn">
+                        <img src="{%static 'img/community_comment.svg'%}" alt="댓글" class="comment">
+                        <p>댓글</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div class="lodging">
+            <img src="./img/1.jpg">
+        </div>
+        </section>
+    </a>
+{% endfor %}
+</body>
 </html>
