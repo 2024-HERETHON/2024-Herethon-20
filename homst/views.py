@@ -161,3 +161,10 @@ def mypage(request):
         'authored_posts': authored_posts,
     }
     return render(request, 'homst/mypage.html', context)
+
+@login_required
+def reserve(request, pk):
+    accommodation = get_object_or_404(Accommodation, pk=pk)
+    if request.method == 'POST':
+        pass
+    return render(request, 'homst/reserve.html', {'accommodation': accommodation})

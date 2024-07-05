@@ -34,4 +34,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('post/<int:pk>/like/', views.like_post, name='like_post'),
     path('post/<int:pk>/comment/', views.add_comment, name='add_comment'),
+    path('reserve/<int:pk>/', views.reserve, name='reserve'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
