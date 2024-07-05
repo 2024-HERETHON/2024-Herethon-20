@@ -1,116 +1,180 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css'  %}" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/home.css'  %}">
-</head>
+  <body>
+    <header class="home_header">
+      <img
+        src="{% static 'svg/logo.svg' %}"
+        alt=""
+        class="home_logo"
+        id="home_logo"
+      />
+      <div class="home_header_right">
+        <a
+          href="{% url 'community' %}"
+          class="home_header_co"
+          id="home_header_co"
+          style="text-decoration: none; color: black"
+          >커뮤니티</a
+        >
+        <a href="{% url 'mypage' %}">
+          <img
+            src="{% static 'svg/profile.svg' %}"
+            class="home_header_pro"
+            id="home_header_pro"
+            alt=""
+          />
+        </a>
+        <a href="{% url 'accounts:login' %}" style="text-decoration: none">
+          <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+        </a>
+      </div>
+    </header>
 
-<body>
-  <header class="home_header">
-    <img src="{% static 'svg/logo.svg' %}" alt="" class="home_logo" id="home_logo">
-    <div class="home_header_right">
-      <a href="{% url 'community' %}" class="home_header_co" id="home_header_co"
-        style="text-decoration: none; color: black;">커뮤니티</a>
-      <a href="{% url 'mypage' %}">
-        <img src="{% static 'svg/profile.svg' %}" class="home_header_pro" id="home_header_pro" alt="">
-      </a>
-      <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
-        <div class="login_header_pro" id="login_header_pro">로그아웃</div>
-      </a>
-    </div>
-  </header>
-
-  <main class="home_main">
-    <div class="home_head">
-      <div class="home_head_div">
-        <p class="home_head_title">예은님, 어디로 안전한 여행을 떠나볼까요?</p>
-        <form action="{% url 'search_results' %}" method="get">
-          <div class="home_head_items">
-            <div class="home_head_item">
-              <img src="{% static 'svg/home_where.svg'  %}" alt="" class="home_head_icon">
-              <label for="destination"></label>
-              {{ form.destination }}
-            </div>
-            <div class="home_head_item">
-              <img src="{% static 'svg/home_when.svg'  %}" class="home_head_icon" alt="">
-              <label for="travel_date"></label>
-              <label for="travel_date2"></label>
-              {{ form.travel_date }} - {{ form.travel_date2 }}
-              <!--<p class="home_head_when">6.30 일 - 7.18 월</p>-->
-            </div>
-            <div class="home_head_btn_empty"></div>
-            <div class="home_head_item">
-              <img src="{% static 'svg/home_who.svg'  %}" class="home_head_icon" alt="">
-              <label for="people"></label>
-              {{ form.people }}
-              <!-- <p class="home_head_who">인원</p> -->
-            </div>
-            <div>
-              <div class="home_head_item" id="home_head_filter">
-                <img src="{% static 'svg/home_filter.svg'  %}" class="home_head_icon" alt="">
-                <p class="home_head_filter">안심필터</p>
+    <main class="home_main">
+      <div class="home_head">
+        <div class="home_head_div">
+          <p class="home_head_title">
+            예은1님, 어디로 안전한 여행을 떠나볼까요?
+          </p>
+          <form action="{% url 'search_results' %}" method="get">
+            <div class="home_head_items">
+              <div class="home_head_item">
+                <img
+                  src="{% static 'svg/home_where.svg'  %}"
+                  alt=""
+                  class="home_head_icon"
+                />
+                <label for="destination"></label>
+                {{ form.destination }}
               </div>
-              <div id="home_head_filter_drop_div" class="home_head_filter_drop_div">
-                <div class="home_head_filter_drop_title">
-                  <span>안심필터</span>
-                  <div class="checkbox_div">
-                    <input type="checkbox" id="home_filter_checkbox">
-                    <label for="home_filter_checkbox"></label>
-                    <p class="home_filter_checkbox_txt">전체 선택</p>
-                  </div>
-
-                  <!-- <button class="select_all">전체 선택</button> -->
+              <div class="home_head_item">
+                <img
+                  src="{% static 'svg/home_when.svg'  %}"
+                  class="home_head_icon"
+                  alt=""
+                />
+                <label for="travel_date"></label>
+                <label for="travel_date2"></label>
+                {{ form.travel_date }} - {{ form.travel_date2 }}
+                <!--<p class="home_head_when">6.30 일 - 7.18 월</p>-->
+              </div>
+              <div class="home_head_btn_empty"></div>
+              <div class="home_head_item">
+                <img
+                  src="{% static 'svg/home_who.svg'  %}"
+                  class="home_head_icon"
+                  alt=""
+                />
+                <label for="people"></label>
+                {{ form.people }}
+                <!-- <p class="home_head_who">인원</p> -->
+              </div>
+              <div>
+                <div class="home_head_item" id="home_head_filter">
+                  <img
+                    src="{% static 'svg/home_filter.svg'  %}"
+                    class="home_head_icon"
+                    alt=""
+                  />
+                  <p class="home_head_filter">안심필터</p>
                 </div>
-                <div class="home_filter_options">
-                  {% for filter in safety_filters %}
-                  <div class="home_filter_option_div">
-                    <div>
-                      <img src="{% static 'svg/filter_option_1.svg'  %}" alt="" class="filter_option_icon">
-                      <p class="filter_option_txt">{{ filter.name }}</p>
+                <div
+                  id="home_head_filter_drop_div"
+                  class="home_head_filter_drop_div"
+                >
+                  <div class="home_head_filter_drop_title">
+                    <span>안심필터</span>
+                    <div class="checkbox_div">
+                      <input type="checkbox" id="home_filter_checkbox" />
+                      <label for="home_filter_checkbox"></label>
+                      <p class="home_filter_checkbox_txt">전체 선택</p>
                     </div>
-                    <input type="checkbox" id="home_filter_checkbox_{{ filter.id }}" name="safety_filter"
-                      value="{{ filter.id }}">
-                    <label for="home_filter_checkbox_{{ filter.id }}"></label>
 
+                    <!-- <button class="select_all">전체 선택</button> -->
                   </div>
-                  {% endfor %}
+                  <div class="home_filter_options">
+                    {% for filter in safety_filters %}
+                    <div class="home_filter_option_div">
+                      <div>
+                        <img
+                          src="{% static 'svg/filter_option_1.svg'  %}"
+                          alt=""
+                          class="filter_option_icon"
+                        />
+                        <p class="filter_option_txt">{{ filter.name }}</p>
+                      </div>
+                      <input
+                        type="checkbox"
+                        id="home_filter_checkbox_{{ filter.id }}"
+                        name="safety_filter"
+                        value="{{ filter.id }}"
+                      />
+                      <label for="home_filter_checkbox_{{ filter.id }}"></label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="home_filter_btn">완료</div>
                 </div>
-                <div class="home_filter_btn">완료</div>
               </div>
+
+              <button type="submit" class="home_head_btn" id="home_head_btn">
+                검색
+              </button>
             </div>
-
-            <button type="submit" class="home_head_btn" id="home_head_btn">검색</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="home_body">
-      <div class="home_list_title_div">
-        <p class="home_list_title">안전도 평가가 좋은 숙소 리스트</p>
-        <img src="{% static 'svg/home_next.svg'  %}" alt="" id="home_safe_next">
+      <div class="home_body">
+        <div class="home_list_title_div">
+          <p class="home_list_title">안전도 평가가 좋은 숙소 리스트</p>
+          <img
+            src="{% static 'svg/home_next.svg'  %}"
+            alt=""
+            id="home_safe_next"
+          />
+        </div>
+        <div class="home_lists" id="home_lists"></div>
+        <div class="home_list_title_div">
+          <p class="home_list_title">안전한 여행할 때, 꼭 알고 가야할 것은?</p>
+          <img
+            src="{% static 'svg/home_next.svg'  %}"
+            alt=""
+            id="home_know_next"
+          />
+        </div>
+        <div class="home_know_list">
+          <div
+            class="home_know_img"
+            style="background-image: url('/static/img/home_know_img1.svg')"
+          ></div>
+          <div
+            class="home_know_img"
+            style="background-image: url('/static/img/home_know_img2.svg')"
+          ></div>
+          <div
+            class="home_know_img"
+            style="background-image: url('/static/img/home_know_img3.svg')"
+          ></div>
+        </div>
+        <div class="home_list_title_div">
+          <p class="home_list_title">커뮤니티 인기 숙소</p>
+          <img
+            src="{% static 'svg/home_next.svg'  %}"
+            alt=""
+            id="home_like_next"
+          />
+        </div>
+        <div class="home_lists" id="home_best_lists"></div>
       </div>
-      <div class="home_lists" id="home_lists"></div>
-      <div class="home_list_title_div">
-        <p class="home_list_title">안전한 여행할 때, 꼭 알고 가야할 것은?</p>
-        <img src="{% static 'svg/home_next.svg'  %}" alt="" id="home_know_next">
-      </div>
-      <div class="home_know_list">
-        <div class="home_know_img" style="background-image: url('/static/img/home_know_img1.svg');"></div>
-        <div class="home_know_img" style="background-image: url('/static/img/home_know_img2.svg');"></div>
-        <div class="home_know_img" style="background-image: url('/static/img/home_know_img3.svg');"></div>
-      </div>
-      <div class="home_list_title_div">
-        <p class="home_list_title">커뮤니티 인기 숙소</p>
-        <img src="{% static 'svg/home_next.svg'  %}" alt="" id="home_like_next">
-      </div>
-      <div class="home_lists" id="home_best_lists"></div>
-    </div>
-    <script src="{% static 'js/home.js'  %}"></script>
-  </main>
-</body>
-
+      <script src="{% static 'js/home.js'  %}"></script>
+    </main>
+  </body>
 </html>
