@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글 작성</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const categorySelect = document.querySelector("#id_category");
+        const accommodationNameField = document.querySelector(
+          "#id_accommodation_name"
+        ).parentElement;
+        const travelDestinationField = document.querySelector(
+          "#id_travel_destination"
+        ).parentElement;
+
+        function updateFields() {
+          if (categorySelect.value === "accommodation") {
+            accommodationNameField.style.display = "block";
+            travelDestinationField.style.display = "block";
+          } else {
+            accommodationNameField.style.display = "none";
+            travelDestinationField.style.display = "none";
+          }
+        }
+
+        updateFields();
+
+        categorySelect.addEventListener("change", updateFields);
+      });
+    </script>
+  </head>
+  <body>
+    <form
+      method="post"
+      action="{% url 'community_create' %}"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">등록</button>
+    </form>
+  </body>
+</html>

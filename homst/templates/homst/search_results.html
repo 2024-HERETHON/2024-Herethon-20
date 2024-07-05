@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숙소 검색 결과</title>
+</head>
+<body>
+    <a href="{% url 'community' %}">커뮤니티</a>
+    <a href="{% url 'mypage' %}">마이페이지</a>
+    <hr />
+
+    <h2>숙소 검색 결과</h2>
+    <p>총 {{ search_results_count }}개의 숙소가 검색되었습니다.</p>
+
+    <form method="GET" action="{% url 'search_results' %}">
+        <input type="hidden" name="destination" value="{{ destination }}">
+        <input type="hidden" name="travel_date" value="{{ travel_date }}">
+        <input type="hidden" name="travel_date2" value="{{ travel_date2 }}">
+        <input type="hidden" name="people" value="{{ people }}">
+        
+        {% for filter in safety_filters %}
+        <input type="hidden" name="safety_filter" value="{{ filter.id }}">
+        {% endfor %}
+
+        <label for="sort_by"></label>
+        <select name="sort_by" id="sort_by" onchange="this.form.submit()">
+            <option value="" {% if not sort_by %}selected{% endif %}>정렬 기준을 선택하세요</option>
+            <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>가격 낮은 순서</option>
+            <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>가격 높은 순서</option>
+            <option value="rating_asc" {% if sort_by == 'rating_asc' %}selected{% endif %}>별점 낮은 순서</option>
+            <option value="rating_desc" {% if sort_by == 'rating_desc' %}selected{% endif %}>별점 높은 순서</option>
+        </select>
+    </form>
+    {% for accommodation in accommodations %}
+        <div>
+            <h2><a href="{% url 'record_detail' record_id=accommodation.id %}">{{ accommodation.name }}</a></h2>
+            <p>{{ accommodation.location }}</p>
+            <p>별점: {{ accommodation.review_score }}</p>
+            <p>가격: {{ accommodation.price }}원</p>
+            <p>
+                {% for filter in accommodation.safety_filters.all %}
+                    {{ filter.name }} |
+                {% endfor %}
+            </p>
+            {% if accommodation.image %}
+                <img src="{{ accommodation.image.url }}" alt="{{ accommodation.name }}" style="max-width: 200px; height: auto;" />
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% if not accommodations %}
+    <p>검색 결과가 없습니다.</p>
+    {% endif %}
+</body>
+</html>
