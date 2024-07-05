@@ -1,17 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>글 삭제</title>
+    <title>글 삭제1</title>
+    <link rel="stylesheet" href="{%static 'css/community_delete.css'%}" />
   </head>
   <body>
-    <div style="padding: 20px">
-      <h2>정말로 글을 삭제하시겠습니까?</h2>
+    <nav>
+      <div class="logo">
+        <a href="{% url 'main' %}"
+          ><img
+            href="{% url 'main' %}"
+            src="{% static 'img/homst_logo.svg' %}"
+            alt="여기톤 로고"
+        /></a>
+      </div>
+      <div class="page">
+        <a href="{% url 'community' %}">커뮤니티</a>
+        <a href="{% url 'mypage' %}"
+          ><img src="{% static 'img/mypage_profile.svg' %}" class="mypage"
+        /></a>
+        <a href="{% url 'accounts:login' %}" style="text-decoration: none">
+          <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+        </a>
+      </div>
+    </nav>
+    <div class="delete">
+      <h2>정말 삭제하시겠습니까?</h2>
+      <p>게시물을 삭제하면 다시 복구할 수 없어요</p>
       <form method="post" action="{% url 'community_delete' post.id %}">
         {% csrf_token %}
-        <button type="submit">삭제</button>
-        <a href="{% url 'community' %}">취소</a>
+        <button type="submit">삭제하기</button>
       </form>
     </div>
   </body>

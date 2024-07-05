@@ -1,43 +1,90 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글 작성</title>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const categorySelect = document.querySelector("#id_category");
-        const accommodationNameField = document.querySelector(
-          "#id_accommodation_name"
-        ).parentElement;
-        const travelDestinationField = document.querySelector(
-          "#id_travel_destination"
-        ).parentElement;
-
-        function updateFields() {
-          if (categorySelect.value === "accommodation") {
-            accommodationNameField.style.display = "block";
-            travelDestinationField.style.display = "block";
-          } else {
-            accommodationNameField.style.display = "none";
-            travelDestinationField.style.display = "none";
-          }
-        }
-
-        updateFields();
-
-        categorySelect.addEventListener("change", updateFields);
-      });
-    </script>
-  </head>
-  <body>
-    <form
+    <link rel="stylesheet" href="{% static 'css/community_write.css' %}">
+</head>
+<body>
+  <nav>
+      <div class="logo">
+          <a href="{% url 'main' %}">
+              <img src="{% static 'img/homst_logo.svg' %}" alt="여기톤 로고">
+          </a>
+      </div>
+      <div class="page">
+          <a href="{% url 'community' %}">커뮤니티</a>
+          <a href="{% url 'mypage' %}">
+              <img src="{% static 'img/mypage_profile.svg' %}" class="mypage">
+          </a>
+          <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
+            <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+        </a>
+      </div>
+  </nav>
+  <div class="container">
+  <form
       method="post"
       action="{% url 'community_create' %}"
-      enctype="multipart/form-data"
-    >
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">등록</button>
-    </form>
-  </body>
+      enctype="multipart/form-data">
+      {% csrf_token %}
+          <div class="category">
+              <h3>카테고리</h3>
+              <div class="select">
+                  <button type="button" onclick="selectCategory('review')">여행후기</button>
+                  <button type="button" onclick="selectCategory('accommodation')">숙소 추천</button>
+                  <button type="button" onclick="selectCategory('free')">자유</button>
+              </div>
+              <select name="category" id="id_category" style="display: none;">
+                  <option value="review">여행 후기</option>
+                  <option value="accommodation">숙소 추천</option>
+                  <option value="free" selected>자유</option>
+              </select>
+          </div>
+          <div class="title">
+              <h3>제목</h3>
+              <input type="text" id="id_title" name="title" placeholder="제목을 입력해 주세요">
+          </div>
+          <div class="recommendations">
+              <h3>어느 숙소에 대한 추천인가요?</h3>
+              <div class="search-container">
+                  <img src="{% static 'img/community_search.svg' %}" class="search-button" alt="search icon">
+                  <input type="text" placeholder="숙소명을 검색해 주세요" class="search-input">
+              </div>
+          </div>
+          <div class="content">
+              <h3>내용</h3>
+              <textarea id="id_content" name="content" rows="10" placeholder="내용을 입력해 주세요" autocomplete="off"></textarea>
+          </div>
+          <div class="submit">
+              <button type="submit">완료</button>
+          </div>   
+  </form>
+</div>
+  <script>
+      function selectCategory(category) {
+          const selectElement = document.getElementById('id_category');
+          selectElement.value = category;
+
+          // 버튼 색상 변경
+          const buttons = document.querySelectorAll('.select button');
+          buttons.forEach(button => {
+              button.classList.remove('selected');
+          });
+
+          // 선택된 버튼에만 색상 적용
+          const selectedButton = Array.from(buttons).find(button => button.getAttribute('onclick').includes(category));
+          if (selectedButton) {
+              selectedButton.classList.add('selected');
+          }
+      }
+
+      // 페이지 로드 시 기본 선택된 카테고리 버튼에 색상 적용
+      document.addEventListener('DOMContentLoaded', () => {
+            // 초기 로드 시 아무 작업도 하지 않음
+        });
+  </script>
+</body>
 </html>

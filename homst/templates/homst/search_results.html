@@ -1,56 +1,190 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>숙소 검색 결과</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/search.css'  %}">
 </head>
+
 <body>
-    <a href="{% url 'community' %}">커뮤니티</a>
-    <a href="{% url 'mypage' %}">마이페이지</a>
-    <hr />
-
-    <h2>숙소 검색 결과</h2>
-    <p>총 {{ search_results_count }}개의 숙소가 검색되었습니다.</p>
-
-    <form method="GET" action="{% url 'search_results' %}">
-        <input type="hidden" name="destination" value="{{ destination }}">
-        <input type="hidden" name="travel_date" value="{{ travel_date }}">
-        <input type="hidden" name="travel_date2" value="{{ travel_date2 }}">
-        <input type="hidden" name="people" value="{{ people }}">
-        
-        {% for filter in safety_filters %}
-        <input type="hidden" name="safety_filter" value="{{ filter.id }}">
-        {% endfor %}
-
-        <label for="sort_by"></label>
-        <select name="sort_by" id="sort_by" onchange="this.form.submit()">
-            <option value="" {% if not sort_by %}selected{% endif %}>정렬 기준을 선택하세요</option>
-            <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>가격 낮은 순서</option>
-            <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>가격 높은 순서</option>
-            <option value="rating_asc" {% if sort_by == 'rating_asc' %}selected{% endif %}>별점 낮은 순서</option>
-            <option value="rating_desc" {% if sort_by == 'rating_desc' %}selected{% endif %}>별점 높은 순서</option>
-        </select>
-    </form>
-    {% for accommodation in accommodations %}
-        <div>
-            <h2><a href="{% url 'record_detail' record_id=accommodation.id %}">{{ accommodation.name }}</a></h2>
-            <p>{{ accommodation.location }}</p>
-            <p>별점: {{ accommodation.review_score }}</p>
-            <p>가격: {{ accommodation.price }}원</p>
-            <p>
-                {% for filter in accommodation.safety_filters.all %}
-                    {{ filter.name }} |
-                {% endfor %}
-            </p>
-            {% if accommodation.image %}
-                <img src="{{ accommodation.image.url }}" alt="{{ accommodation.name }}" style="max-width: 200px; height: auto;" />
-            {% endif %}
+    <header class="search_header">
+        <img src="{% static 'svg/logo.svg' %}" alt="" class="search_logo">
+        <div class="search_item_div">
+            <img src="{% static 'svg/search_item_icon.svg' %}" class="search_item_icon" alt="">
+            <p class="search_item" id="search_item_where">{{ destination }}</p>
+            <p class="search_item_bar">|</p>
+            <p class="search_item" id="search_item_when">{{ travel_date }} - {{ travel_date2 }}</p>
+            <p class="search_item_bar">|</p>
+            <p class="search_item" id="search_item_who">인원 {{ people }}</p>
         </div>
-    {% endfor %}
+        <div class="search_header_right">
+            <a href="{% url 'community' %}" class="search_header_co" id="home_header_co"
+        style="text-decoration: none; color: black;">커뮤니티</a>
+      <a href="{% url 'mypage' %}">
+        <img src="{% static 'svg/profile.svg' %}" class="search_header_pro" id="home_header_pro" alt="">
+      </a>
+      <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
+        <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+      </a>
+        </div>
+    </header>
 
-    {% if not accommodations %}
-    <p>검색 결과가 없습니다.</p>
-    {% endif %}
+    <main class="search_main">
+        <div class="search_type_div">
+            <h6 class="search_type_title">안전 필터</h6>
+            <div class="search_check_type_div">
+                <input type="checkbox" checked class="search_type_safe_item" id="search_type_cctv">
+                <label for="search_type_cctv"></label>
+                <p class="search_type_txt">CCTV</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" checked class="search_type_safe_item" id="search_type_camera">
+                <label for="search_type_camera"></label>
+                <p class="search_type_txt">몰카 안전</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" checked class="search_type_safe_item" id="search_type_toilet">
+                <label for="search_type_toilet"></label>
+                <p class="search_type_txt">남녀 화장실 분리</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" checked class="search_type_safe_item" id="search_type_girl">
+                <label for="search_type_girl"></label>
+                <p class="search_type_txt">여성전용 숙소</p>
+            </div>
+            <hr>
+            <h6 class="search_type_title">숙소유형</h6>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_total">
+                <label for="search_type_total"></label>
+                <p class="search_type_txt">전체</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_motel">
+                <label for="search_type_motel"></label>
+                <p class="search_type_txt">모텔</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_hotel">
+                <label for="search_type_hotel"></label>
+                <p class="search_type_txt">호텔</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_pension">
+                <label for="search_type_pension"></label>
+                <p class="search_type_txt">펜션</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_guest">
+                <label for="search_type_guest"></label>
+                <p class="search_type_txt">게스트 하우스</p>
+            </div>
+            <div class="search_check_type_div">
+                <input type="checkbox" class="search_type_safe_item" id="search_type_camping">
+                <label for="search_type_camping"></label>
+                <p class="search_type_txt">캠핑</p>
+            </div>
+            <hr>
+            <h6 class="search_type_title_">가격</h6>
+
+            <form class="box">
+                <div class="slider">
+                    <input type="range" id="input-left" min="10000" max="2000000" value="10000" />
+                    <input type="range" id="input-right" min="10000" max="2000000" value="2000000" />
+                    <div class="track">
+                        <div class="range"></div>
+                        <div class="thumb left"></div>
+                        <div class="thumb right"></div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="search_type_price_num_div">
+                <p class="search_type_price_min">10,000</p>
+                <p> ~ </p>
+                <p class="search_type_price_max">2,000,000</p>
+            </div>
+            <hr>
+            <h6 class="search_type_title">시설</h6>
+            <div class="search_home_item_div">
+                <div class="search_home_item">스파</div>
+                <div class="search_home_item">욕실용품</div>
+                <div class="search_home_item">에어컨</div>
+                <div class="search_home_item">와이파이</div>
+                <div class="search_home_item">콘센트</div>
+                <div class="search_home_item">사우나</div>
+                <div class="search_home_item">매점</div>
+            </div>
+        </div>
+        <div class="search_result_div">
+            <div class="search_result_title_div">
+                <div class="search_result_txt">
+                    <p class="search_result_title">'{{ destination }}'의 가장 안전한 숙소들</p>
+                    <p class="search_result_count">{{ search_results_count }}개</p>
+                </div>
+                <form method="GET" action="{% url 'search_results' %}">
+                    <input type="hidden" name="destination" value="{{ destination }}">
+                    <input type="hidden" name="travel_date" value="{{ travel_date }}">
+                    <input type="hidden" name="travel_date2" value="{{ travel_date2 }}">
+                    <input type="hidden" name="people" value="{{ people }}">
+                    
+                    {% for filter in safety_filters %}
+                    <input type="hidden" name="safety_filter" value="{{ filter.id }}">
+                    {% endfor %}
+            
+                    <label for="sort_by"></label>
+                    <select class="drop_down" name="sort_by" id="sort_by" onchange="this.form.submit()">
+                        <option value="" {% if not sort_by %}selected{% endif %}>정렬 기준을 선택하세요</option>
+                        <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>가격 낮은 순서</option>
+                        <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>가격 높은 순서</option>
+                        <option value="rating_asc" {% if sort_by == 'rating_asc' %}selected{% endif %}>별점 낮은 순서</option>
+                        <option value="rating_desc" {% if sort_by == 'rating_desc' %}selected{% endif %}>별점 높은 순서</option>
+                    </select>
+                </form>
+            </div>
+            
+            <div class="search_result_lists" id="search_result_lists">
+                {% for accommodation in accommodations %}
+                <a href="{% url 'record_detail' record_id=accommodation.id %}">
+                    <div class="search_result_list">
+                        <div class="search_result_img"></div>
+                        <div class="search_result_imp">
+                            <div>
+                                <p class="search_result_home_type"> </p>
+                                <p class="search_result_name">{{ accommodation.name }}</p>
+                                <p class="search_result_where">{{ accommodation.location }}</p>
+                                <div class="search_result_rec">
+                                    <img src="{% static 'svg/home_list_name_rec_icon.svg' %}" class="search_result_rec_icon"
+                                        alt="">
+                                    <p class="search_result_rec_num">{{ accommodation.review_score }}</p>
+                                </div>
+                            </div>
+                            <div class="search_result_under">
+                                <div class="search_result_types">
+                                    {% for filter in accommodation.safety_filters.all %}
+                                    <p class="search_result_type">{{ filter.name }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="search_result_price">
+                                    <p class="search_result_price_txt">전 객실 평균</p>
+                                    <p class="search_result_price_num">{{ accommodation.price }}원</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                {% endfor %}
+
+                {% if not accommodations %}
+                <p>검색 결과가 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
