@@ -53,9 +53,9 @@
 }
 
 .search_logo {
+    width: 115px;
+    height: 34px;
     margin-left: 56px;
-    width: 107px;
-    height: 21px;
 }
 
 .search_header_right {
@@ -353,17 +353,20 @@ input[id="search_type_total"]:checked+label::after {
     flex-wrap: wrap;
     row-gap: 7px;
     column-gap: 6px;
-    width: 200px;
+    width: 250px;
 }
 
 .search_result_type {
     width: auto;
-    padding: 6px 11px;
+    height: 26px;
+    padding: 0px 11px;
     background-color: #FE6683;
     color: var(--white);
     font-size: 12px;
     border-radius: 36px;
     font-family: 'S';
+    display: flex;
+    align-items: center;
 }
 
 .search_result_price_txt {
@@ -455,4 +458,22 @@ input:first-child {
 
 .right {
     right: 0;
+}
+.search_result_title_div{
+    display: flex;
+    justify-content: space-between;
+}
+.drop_down{
+    width: 155px;
+    height: 42px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-family: 'B';
+    padding-left: 7px;
+    background-color: #EDEDED;
+}
+.drop_down option{
+    
+    
 }
