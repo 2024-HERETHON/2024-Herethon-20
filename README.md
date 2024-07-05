@@ -36,7 +36,10 @@
   <tr width="100%">
   <td  align="center">기획·디자인</td>
   <td  align="center">프론트엔드</td>
+    <td  align="center">프론트엔드</td>
   <td  align="center">백엔드</td>
+      <td  align="center">백엔드</td>
+      <td  align="center">백엔드</td>
      </tr>
       <tr width="100%">
           <td  align="center"><p>담당 기능 A</p><p>담당 기능 B</p><p>담당 기능 C</p></td>
