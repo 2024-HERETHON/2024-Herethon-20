@@ -1,0 +1,329 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'R';
+}
+@font-face {
+    font-family: 'B';
+    src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'S';
+    src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'M';
+    src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'R';
+    src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'L';
+    src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+/* 기본 스타일 리셋 및 폰트 정의 */
+body, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'R';
+    color: #333;
+}
+
+
+/* 전체 페이지 */
+body {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    width: 100%;
+    background: #FFFFFF;
+    height: 76px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-left: 56px;
+    width: 107px;
+    height: 21px;
+}
+
+.page a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+.mypage {
+    width: 40px;
+    height: 40px;
+    margin-right: 130px;
+}
+
+
+.login_header_pro {
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: #FE6683;
+    color: var(--white);
+    font-size: 14px;
+    font-family: "M";
+    border-radius: 8.18px;
+  }
+
+/*본문*/
+
+.container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    padding: 10px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.category, .title, .content {
+    margin-bottom: 35px;
+    margin-right: 20px;
+}
+
+.category {
+    margin-top: 100px;
+}
+
+.category button {
+    margin-right: 20px;
+    width: 220px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bolder;
+    border: none;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.select button.selected {
+    background-color: #484848;
+    color: #fff;
+}
+
+.title input {
+    width: 100%;
+    padding: 20px;
+    border: 0;
+    height: 35px;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+/*검색*/
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border: 0;
+    height: 35px;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.search-icon {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 10px;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-size: 16px;
+}
+
+/*숙소추천*/
+.recommendations {
+    margin-bottom: 50px;
+    margin-right: 20px;
+}
+
+.post-rating {
+    display: flex;
+    background-color: #F1F1F1;
+    width: 100%;
+    height: 120px;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.rating-img {
+    width: 194px;
+    height: 116px;
+    border-radius: 10px;
+}
+
+.info-left {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+}
+
+.lod-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.locate {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.rate {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px;
+    color: #000;
+    margin: 0;
+    background-color: #8C8C8C;
+    border-radius: 5px;
+    text-align: center;
+    width: 40px;
+    box-sizing: border-box; /* 패딩과 보더를 포함한 전체 크기를 설정 */
+}
+
+/* 기본 라디오 버튼 숨기기 */
+input[type="radio"] {
+    display: none;
+}
+
+/* 라디오 버튼 레이블 스타일링 */
+label[for="rec2"] {
+    display: inline-block;
+    width: 34px; 
+    height: 34px; 
+    border-radius: 50%;
+    background-color: #D9D9D9; 
+    position: relative;
+    cursor: pointer;
+}
+
+/* 선택된 라디오 버튼 스타일링 */
+input[type="radio"]:checked + label[for="rec2"] {
+    background-color: #D9D9D9; 
+}
+
+/* 체크 표시 스타일링 */
+input[type="radio"]:checked + label[for="rec2"]::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+/*오른쪽*/
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.cctv {
+    padding: 20px 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.detail {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.detail > p {
+    margin-left: 35px;
+}
+
+/*본문*/
+.content textarea {
+    width: 100%;
+    padding: 20px;
+    border: 0;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+    height: 1085px; /* 원하는 높이로 조정 */
+    font-size: 16px;
+    margin: 0 auto;
+    resize: none; /* 사용자가 크기를 조정하지 못하도록 설정 */
+    outline: none;
+}
+
+.submit {
+    text-align: center;
+}
+
+.submit button {
+    padding: 10px 35px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+}

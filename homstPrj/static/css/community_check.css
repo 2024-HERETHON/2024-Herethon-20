@@ -1,0 +1,461 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --home_head_back: #BBBBBB;
+    --home_head_btn: #FE6683;
+    --home_head_item_back: #F5F5F5;
+    --home_head_item_txt: #3B3B3B;
+
+    --img_back: #D9D9D9;
+
+    --home_head_popup_back: #EAEAEA;
+    --home_head_popup_icon: #8C8C8C;
+    --home_main_item_back: #D9D9D9;
+    --home_main_item_grade: #8C8C8C;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'R';
+}
+@font-face {
+    font-family: 'B';
+    src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'S';
+    src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'M';
+    src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'R';
+    src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'L';
+    src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+/* 기본 스타일 리셋 및 폰트 정의 */
+body, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'R';
+    color: #333;
+}
+
+/* 전체 페이지 */
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    width: 100%;
+    background: #FFFFFF;
+    height: 76px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page {
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.logo img {
+    margin-left: 56px;
+    width: 107px;
+    height: 21px;
+}
+
+.page a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+.mypage {
+    width: 40px;
+    height: 40px;
+    margin-right: 130px;
+}
+
+.login_header_pro {
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: #FE6683;
+    color: var(--white);
+    font-size: 14px;
+    font-family: "M";
+    border-radius: 8.18px;
+  }
+
+/*제목*/
+.category {
+    margin-top: 100px;
+    font-size: 16px;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.title h2 {
+    font-size: 32px;
+}
+
+/*햄버거바*/
+.menu-btn {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+.menu-btn div {
+    width: 5px;
+    height: 5px;
+    background-color: #4D4D4D;
+    border-radius: 50%;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 31%;  /* 햄버거 버튼 바로 아래에 위치하도록 설정 */
+    right: 130px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+hr {
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    border: none;
+    border-top: 1px solid #d3d3d3;
+}
+
+
+.menu-content a {
+    color: black;
+    padding: 12px 25px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.menu-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+/*프로필*/
+.profile {
+    display: flex;
+    flex-direction: row;
+    color: #a6a6a6;
+    font-size: 12px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.profile > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%; 
+}
+
+.profile-info {
+    margin-left: 10px;
+}
+
+.profile-info > h3 {
+    max-width: 200px;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+}
+
+.date {
+    font-size: 14px;
+}
+
+.level {
+    font-size: 10px;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+
+/* 별점정보 */
+
+
+.post-rating {
+    display: flex;
+    background-color: #F4F4F4;
+    border: 1px solid #B3B3B3;
+    width: 85%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.rating-img {
+    width: 194px;
+    height: 116px;
+    border-radius: 7px;
+}
+
+.info-left {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+}
+
+.lod-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.locate {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.rate-star {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.star {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+}
+
+.rate {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px;
+    color: #4D4D4D;
+    margin: 0;
+}
+
+
+
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.cctv {
+    font-size: 12px;
+    padding: 7px 10px;
+    font-weight: bold;
+    background-color: #FE6683;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.detail {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.detail > p {
+    margin-left: 10px;
+    padding: 7px 10px;
+    background-color: #4D4D4D;
+    border-radius: 20px;
+    color: #ffffff;
+}
+
+.detail > p:first-child {
+    background-color: #FE6683;
+    color: white;
+}
+
+/*내용*/
+.content {
+    padding: 40px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.buttons {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.posvote-btn, .scrap-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.like {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.comment {
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+}
+
+/*댓글*/
+section {
+    padding: 20px;
+    background-color: #F1F1F1;
+    border-radius: 10px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+article {
+    padding: 20px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.parent-profile {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.parent-profile .profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.parent-profile .name {
+    font-size: 14px;
+    margin: 0;
+}
+
+.parent p {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.parent button {
+    align-self: flex-end;
+    border: none;
+    padding: 7px 0;
+    background-color: #E3E3E3;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 75px;
+}
+
+/*댓글 쓰기*/
+.parent-write {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.parent-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.parent-write textarea {
+    width: 100%;
+    padding: 20px;
+    border: 0;
+    height: 70px; /* 원하는 높이로 조정 */
+    background-color: #E9E9E9;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 15px;
+    resize: none; /* 사용자가 크기를 조정하지 못하도록 설정 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 크기 지정 */
+    outline: none;
+}
+
+.parent-content button {
+    align-self: flex-end;
+    border: none;
+    background-color: #484848;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100px;
+    padding: 7px 0;
+    margin-left: 20px;
+}

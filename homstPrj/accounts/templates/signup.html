@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/join.css'  %}">
+    <style>
+      .error-message {
+        color: red;
+        font-size: 0.8em;
+        margin-top: 5px;
+      }
+    </style>
+</head>
+<body>
+    <header class="join_header">
+        <img src="{% static 'svg/logo.svg' %}" alt="" class="join_logo" id="join_logo">
+        <div class="join_header_right">
+            <a class="join_header_co" id="join_header_co">커뮤니티</a>
+            <div class="join_header_pro" id="join_header_pro">로그인 / 회원가입</div>
+        </div>
+    </header>
+    <main class="join_main">
+        <div class="join_div">
+            <h1 class="join">회원가입</h1>
+            
+            <form class="user" method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                
+                <p class="join_title">이메일</p>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="이메일을 입력하세요."
+                    class="join_email"
+                    required
+                />
+                
+                <p class="join_title">비밀번호</p>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="비밀번호를 입력하세요."
+                    class="join_pw"
+                    required
+                />
+                <div id="password-error" class="error-message"></div>
+                
+                <p class="join_title">비밀번호 확인</p>
+                <input
+                    type="password"
+                    id="repeat"
+                    name="repeat"
+                    placeholder="비밀번호를 다시 한 번 입력하세요."
+                    class="join_pw_re"
+                    required
+                />
+                
+                <br />
+                <input type="submit" value="가입하기" class="join_btn" id="join_btn">
+            </form>
+            
+            <p class="join_txt">기존 계정이 있으신가요?</p>
+            <a href="{% url 'accounts:login' %}" class="join_login" id="join_login">로그인</a>
+        </div>
+    </main>
+
+    <script>
+        const form = document.querySelector(".user");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const passwordRepeatInput = document.getElementById("repeat");
+        const passwordError = document.getElementById("password-error");
+
+        form.addEventListener("submit", function (event) {
+            if (!isValidEmail(emailInput.value)) {
+                alert("올바른 이메일 주소를 입력하세요.");
+                event.preventDefault();
+            } else if (passwordInput.value.length < 8) {
+                passwordError.textContent = "비밀번호는 최소 8자 이상이어야 합니다.";
+                event.preventDefault();
+            } else if (passwordInput.value !== passwordRepeatInput.value) {
+                passwordError.textContent = "비밀번호가 일치하지 않습니다.";
+                event.preventDefault();
+            } else {
+                passwordError.textContent = "";
+            }
+        });
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        passwordInput.addEventListener("input", function () {
+            passwordError.textContent = "";
+        });
+
+        passwordRepeatInput.addEventListener("input", function () {
+            passwordError.textContent = "";
+        });
+    </script>
+</body>
+</html>

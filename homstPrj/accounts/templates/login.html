@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css'  %}">
+</head>
+<body>
+    <header class="login_header">
+        <img src="{% static 'svg/logo.svg' %}" alt="" class="login_logo" id="login_logo">
+        <div class="login_header_right">
+            <a class="login_header_co" id="login_header_co">커뮤니티</a>
+            <div class="login_header_pro" id="login_header_pro">로그인 / 회원가입</div>
+        </div>
+    </header>
+    <main class="login_main">
+        <div class="login_div">
+            <p class="login">로그인</p>
+            {% if error_message %}
+                <p style="color: red">{{ error_message }}</p>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <p class="login_title">이메일</p>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="이메일을 입력해주세요."
+                    class="login_email"
+                    value="{% if username %}{{ username }}{% endif %}"
+                />
+                <p class="login_title">비밀번호</p>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="비밀번호를 입력하세요"
+                    class="login_pw"
+                />
+                <div>
+                    <input type="submit" value="로그인" class="login_btn" id="login_btn">
+                </div>
+            </form>
+            <p class="login_txt">계정이 없으신가요? <a href="{% url 'accounts:signup' %}" class="login_join" id="login_join">회원가입</a></p>
+        </div>
+    </main>
+</body>
+</html>

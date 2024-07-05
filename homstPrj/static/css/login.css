@@ -1,0 +1,150 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --login_input_back: #EDEDED;
+    --login_input_txt: #9C9C9C;
+    --login_btn_back: #FE6683;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'B';
+    src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'S';
+    src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'M';
+    src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'R';
+    src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'L';
+    src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+.login_header {
+    width: 1440px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-bottom:5px solid #E7E7E7;
+    justify-content: space-between;
+}
+
+.login_logo {
+    margin-left: 56px;
+    width: 107px;
+    height: 21px;
+}
+.login_header_right{
+    display: flex;
+}
+.login_header_co{
+    font-size: 16px;
+    align-content: center;
+    font-family: 'R';
+}
+.login_header_pro{
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: var(--login_btn_back);
+    color: var(--white);
+    font-size: 14px;
+    font-family: 'M';
+    border-radius: 8.18px;
+}
+body{
+    margin-top: 5px;
+}
+.login_main {
+    width: 1440px;
+    height: 741px;
+    display: flex;
+    background-color: var(--white);
+}
+
+.login_div {
+    margin: 0 auto;
+    align-self: center;
+}
+
+.login {
+    font-size: 28px;
+    color: var(--black);
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: 'S';
+}
+
+.login_title {
+    margin-top: 32px;
+    font-size: 14px;
+    font-family: 'M';
+}
+
+input[type='text'] {
+    width: 358px;
+    height: 48px;
+    background-color: var(--login_input_back);
+    color: var(--login_input_txt);
+    margin-top: 7px;
+    border: 0;
+    border-radius: 8px;
+    padding-left: 24px;
+    font-family: 'M';
+}
+
+input[type='password'] {
+    width: 358px;
+    height: 48px;
+    background-color: var(--login_input_back);
+    color: var(--login_input_txt);
+    margin-top: 7px;
+    border: 0;
+    border-radius: 8px;
+    padding-left: 24px;
+    font-family: 'M';
+}
+
+.login_btn {
+    width: 382px;
+    height: 54px;
+    background-color: var(--login_btn_back);
+    text-align: center;
+    color: var(--white);
+    border-radius: 8px;
+    margin-top: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-family: 'S';
+}
+
+.login_txt {
+    text-align: center;
+    font-size: 12px;
+    color: var(--black);
+    margin-top: 37px;
+    font-family: 'R';
+}
+
+.login_join {
+    font-size: 14px;
+    color: var(--black);
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    font-family: 'M';
+}
