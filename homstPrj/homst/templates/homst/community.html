@@ -31,70 +31,113 @@
   </head>
   <body>
     <nav>
-        <div class="logo">
-            <a href="{% url 'main' %}"><img href="{% url 'main' %}" src="{%static 'img/homst_logo.svg' %}" alt="여기톤 로고"></a>
-        </div>
-        <div class="page">
-            <a href="{% url 'community' %}">커뮤니티</a>
-            <a href="{% url 'mypage' %}"><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"></a>
-            <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
-                <div class="login_header_pro" id="login_header_pro">로그아웃</div>
-            </a>
-        </div>
+      <div class="logo">
+        <a href="{% url 'main' %}"
+          ><img
+            href="{% url 'main' %}"
+            src="{%static 'img/homst_logo.svg' %}"
+            alt="여기톤 로고"
+        /></a>
+      </div>
+      <div class="page">
+        <a href="{% url 'community' %}">커뮤니티</a>
+        <a href="{% url 'mypage' %}"
+          ><img src="{%static 'img/mypage_profile.svg'%}" class="mypage"
+        /></a>
+        <a href="{% url 'accounts:login' %}" style="text-decoration: none">
+          <div class="login_header_pro" id="login_header_pro">로그아웃</div>
+        </a>
+      </div>
     </nav>
     <div class="title">
-        <div class="category-select">
+      <div class="category-select">
         <form method="GET" action="{% url 'community' %}">
-            <button type="submit" name="category" value="review" class="{% if request.GET.category == 'review' %}active{% endif %}">여행후기</button>
-            <button type="submit" name="category" value="accommodation" class="{% if request.GET.category == 'accommodation' %}active{% endif %}">숙소추천</button>
-            <button type="submit" name="category" value="free" class="{% if request.GET.category == 'free' %}active{% endif %}">자유</button>
+          <button
+            type="submit"
+            name="category"
+            value="review"
+            class="{% if request.GET.category == 'review' %}active{% endif %}"
+          >
+            여행후기
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="accommodation"
+            class="{% if request.GET.category == 'accommodation' %}active{% endif %}"
+          >
+            숙소추천
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="free"
+            class="{% if request.GET.category == 'free' %}active{% endif %}"
+          >
+            자유
+          </button>
         </form>
-        </div>
-        <a href="{% url 'community_create' %}" class="button">글쓰기</a>
+      </div>
+      <a href="{% url 'community_create' %}" class="button">글쓰기</a>
     </div>
     {% for post in posts %}
     <a class="section-link" href="{% url 'community_detail' post.id %}">
-        <section>
+      <section>
         <article>
-            <div class="post">
-                <div class="profile">
-                    <img src="{%static 'img/mypage_profile.svg'%}" class="profile-img">
-                    <div class="profile-info">
-                        <h3 class="name">{{ post.author }}</h3>
-                        <p class="date">{{ post.created_at }}</p>
-                    </div>
-                    <p class="level">숙소 이용객</p>
-                </div>
-                <div class="post-title">{{ post.title }}</div>
-                <div class="post-rating">
-                    <img src="{%static 'img/hotel.png'%}" class="rating-img">
-                    <div class="rating-info">
-                        <h3 class="lod-name">속초 호텔 청초</h3>
-                        <p class="locate">속초시, 역 도보 8분</p>
-                    </div>
-                    <div class="rate-star">
-                        <img src="{%static 'img/community_star.svg'%}" alt="별점" class="star">
-                        <p class="rate">9.0</p>
-                    </div>
-                </div>
-                <p class="post-contents">{{ post.content }}</p>
-                <div class="buttons">
-                    <div class="posvote-btn">
-                        <img src="{%static 'img/community_like.svg'%}" alt="공감" class="like">
-                        <p>공감{{ post.get_likes_count }}</p>
-                    </div>
-                    <div class="scrap-btn">
-                        <img src="{%static 'img/community_comment.svg'%}" alt="댓글" class="comment">
-                        <p>댓글</p>
-                    </div>
-                </div>
+          <div class="post">
+            <div class="profile">
+              <img
+                src="{%static 'img/mypage_profile.svg'%}"
+                class="profile-img"
+              />
+              <div class="profile-info">
+                <h3 class="name">{{ post.author }}</h3>
+                <p class="date">{{ post.created_at }}</p>
+              </div>
+              <p class="level">숙소 이용객</p>
             </div>
+            <div class="post-title">{{ post.title }}</div>
+            <div class="post-rating">
+              <img src="{%static 'img/hotel.png'%}" class="rating-img" />
+              <div class="rating-info">
+                <h3 class="lod-name">속초 호텔 청초</h3>
+                <p class="locate">속초시, 역 도보 8분</p>
+              </div>
+              <div class="rate-star">
+                <img
+                  src="{%static 'img/community_star.svg'%}"
+                  alt="별점"
+                  class="star"
+                />
+                <p class="rate">9.0</p>
+              </div>
+            </div>
+            <p class="post-contents">{{ post.content }}</p>
+            <div class="buttons">
+              <div class="posvote-btn">
+                <img
+                  src="{%static 'img/community_like.svg'%}"
+                  alt="공감"
+                  class="like"
+                />
+                <p>공감{{ post.get_likes_count }}</p>
+              </div>
+              <div class="scrap-btn">
+                <img
+                  src="{%static 'img/community_comment.svg'%}"
+                  alt="댓글"
+                  class="comment"
+                />
+                <p>댓글</p>
+              </div>
+            </div>
+          </div>
         </article>
         <div class="lodging">
-            <img src="./img/1.jpg">
+          <img src="./img/1.jpg" />
         </div>
-        </section>
+      </section>
     </a>
-{% endfor %}
-</body>
+    {% endfor %}
+  </body>
 </html>
