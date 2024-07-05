@@ -2,50 +2,26 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>숙소 검색 결과</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/search.css'  %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../asset/css/search.css">
 </head>
 
 <body>
     <header class="search_header">
-        <img src="{% static 'svg/logo.svg' %}" alt="" class="search_logo">
-
-        <form method="GET" action="{% url 'search_results' %}">
-            <div class="search_item_div">
-                <img src="{% static 'svg/search_item_icon.svg' %}" class="search_item_icon" alt="">
-                <p class="search_item" id="search_item_where">{{ destination }}</p>
-                <p class="search_item_bar">|</p>
-                <p class="search_item" id="search_item_when">{{ travel_date }} - {{ travel_date2 }}</p>
-                <p class="search_item_bar">|</p>
-                <p class="search_item" id="search_item_who">인원 {{ people }}</p>
-            </div>
-
-            <input type="hidden" name="destination" value="{{ destination }}">
-            <input type="hidden" name="travel_date" value="{{ travel_date }}">
-            <input type="hidden" name="travel_date2" value="{{ travel_date2 }}">
-            <input type="hidden" name="people" value="{{ people }}">
-
-            <label for="sort_by"></label>
-            <select name="sort_by" id="sort_by" onchange="this.form.submit()">
-                <option value="" {% if not sort_by %}selected{% endif %}>정렬 기준을 선택하세요</option>
-                <option value="price_asc" {% if sort_by=='price_asc' %}selected{% endif %}>가격 낮은 순서</option>
-                <option value="price_desc" {% if sort_by=='price_desc' %}selected{% endif %}>가격 높은 순서</option>
-                <option value="rating_asc" {% if sort_by=='rating_asc' %}selected{% endif %}>별점 낮은 순서</option>
-                <option value="rating_desc" {% if sort_by=='rating_desc' %}selected{% endif %}>별점 높은 순서</option>
-            </select>
-        </form>
+        <img src="../asset/svg/logo.svg" alt="" class="search_logo">
+        <div class="search_item_div">
+            <img src="../asset/svg/search_item_icon.svg" class="search_item_icon" alt="">
+            <p class="search_item" id="search_item_where">제주도</p>
+            <p class="search_item_bar">|</p>
+            <p class="search_item" id="search_item_when">06.30 - 07.01</p>
+            <p class="search_item_bar">|</p>
+            <p class="search_item" id="search_item_who">인원 2</p>
+        </div>
         <div class="search_header_right">
-            <a href="{% url 'community' %}" class="home_header_co" id="home_header_co"
-                style="text-decoration: none; color: black;">커뮤니티</a>
-            <a href="{% url 'mypage' %}">
-                <img src="{% static 'svg/profile.svg' %}" class="home_header_pro" id="home_header_pro" alt="">
-            </a>
-            <a href="{% url 'accounts:login' %}" style="text-decoration: none;">
-                <div class="login_header_pro" id="login_header_pro">로그아웃</div>
-            </a>
+            <a class="search_header_co">커뮤니티</a>
+            <img src="../asset/svg/profile.svg" class="search_header_pro" alt="">
         </div>
     </header>
 
@@ -138,44 +114,13 @@
         </div>
         <div class="search_result_div">
             <div class="search_result_txt">
-                <p class="search_result_title">'{{ destination }}'의 가장 안전한 숙소들</p>
-                <p class="search_result_count">{{ search_results_count }}개</p>
+                <p class="search_result_title">'제주도'의 가장 안전한 숙소들</p>
+                <p class="search_result_count">19개</p>
             </div>
             <div class="search_result_lists" id="search_result_lists"></div>
         </div>
     </main>
-
-    {% for accommodation in accommodations %}
-    <a href="{% url 'record_detail' record_id=accommodation.id %}">
-        <div class="search_result_img"></div>
-        <div class="search_result_imp">
-            <div>
-                <p class="search_result_home_type">${hotel.tag}</p>
-                <p class="search_result_name">{{ accommodation.name }}</p>
-                <p class="search_result_where">{{ accommodation.location }}</p>
-                <div class="search_result_rec">
-                    <img src="../asset/svg/home_list_name_rec_icon.svg" class="search_result_rec_icon" alt="">
-                    <p class="search_result_rec_num">{{ accommodation.review_score }}</p>
-                </div>
-            </div>
-            <div class="search_result_under">
-                <div class="search_result_types">
-                    {% for filter in accommodation.safety_filters.all %}
-                    <p class="search_result_type">{{ filter.name }}</p>
-                    {% endfor %}
-                </div>
-                <div class="search_result_price">
-                    <p class="search_result_price_txt">전 객실 평균</p>
-                    <p class="search_result_price_num">{{ accommodation.price }}</p>
-                </div>
-            </div>
-        </div>
-    </a>
-    {% endfor %}
-
-    {% if not accommodations %}
-    <p>검색 결과가 없습니다.</p>
-    {% endif %}
+    <script src="../js/search.js"></script>
 </body>
 
 </html>

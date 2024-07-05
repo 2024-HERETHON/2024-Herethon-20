@@ -1,0 +1,115 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --join_input_back: #EDEDED;
+    --join_input_txt: #9C9C9C;
+    --join_btn_back: #FE6683;
+
+    --login_input_back: #D9D9D9;
+    --login_input_txt: #9C9C9C;
+    --login_btn_back: #3B3B3B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'B';
+    src: url('../font/Pretendard-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'S';
+    src: url('../font/Pretendard-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'M';
+    src:url('../font/Pretendard-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'R';
+    src: url('../font/Pretendard-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'L';
+    src:url('../font/Pretendard-Light.woff') format('woff');
+}
+
+.join_done_header {
+    width: 1440px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-bottom:5px solid #E7E7E7;
+    justify-content: space-between;
+}
+.join_done_logo {
+    width: 115px;
+    height: 34px;
+    margin-left: 56px;
+}
+.join_done_header_right{
+    display: flex;
+}
+.join_done_header_co{
+    font-size: 16px;
+    align-content: center;
+    font-family: 'R';
+}
+.join_done_header_pro{
+    padding: 9px 18px;
+    margin-right: 131px;
+    margin-left: 21px;
+    background-color: var(--join_btn_back);
+    color: var(--white);
+    font-size: 14px;
+    border-radius: 8.18px;
+    font-family: 'M';
+}
+
+.join_done_main{
+    width: 1440px;
+    height: 741px;
+    display: flex;
+    background-color: var(--white);
+}
+.join_done_div{
+    margin: 0 auto;
+    align-self: center;
+}
+.join_done_img{
+    width: 439px;
+    height: 301px;
+    display: flex;
+    margin: auto;
+    margin-bottom: 26px;
+}
+.join_done_txt1{
+    font-size: 28px;
+    color: var(--black);
+    text-align: center;
+    font-family: 'S';
+}
+.join_done_txt2{
+    font-size: 24px;
+    color: var(--black);
+    text-align: center;
+    margin-top: 17px;
+    font-family: 'R';
+}
+.join_done_btn{
+    width: 145px;
+    height: 60px;
+    background-color: var(--login_btn_back);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: 'B';
+}
+
