@@ -52,7 +52,7 @@
      </tr>
       <tr width="100%">
           <td  align="center"><p>서비스 기획</p><p>UI 디자인</p><p>서비스 발표</p></td>
-          <td  align="center"><p></p>커뮤니티 구현<p>마이페이지 구현</p></td>
+          <td  align="center"><p>커뮤니티/글쓰기</p><p>마이페이지</p></td>
           <td  align="center"><p>회원가입/로그인</p><p>숙소 검색 및 결과</p></td>
           <td  align="center"><p>메인페이지 구현</p><p>검색기능 필터</p><p>커뮤니티 댓글/좋아요</p></td>
           <td  align="center"><p>커뮤니티 CRUD</p><p>admin 저장</p><p>url연결</p></td>
